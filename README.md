@@ -1,4 +1,4 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Fifiuba/admin-service/test?label=build&style=flat-square&logo=GitHub)](https://github.com/Fifiuba/admin-service/commits)
+[![GitHub Workflow Status](https://github.com/Fifiuba/admin-service/actions/workflows/test_action.yml/badge.svg?event=push)](https://github.com/Fifiuba/admin-service/commits/main)
 [![codecov](https://codecov.io/gh/Fifiuba/admin-service/branch/main/graph/badge.svg?token=WQLIP37828)](https://codecov.io/gh/Fifiuba/admin-service)
 [![GitHub issues](https://img.shields.io/github/issues/Fifiuba/admin-service?&style=flat-square)](https://github.com/Fifiuba/admin-service/issues)
 [![GitHub license](https://img.shields.io/github/license/Fifiuba/admin-service?&style=flat-square)](https://github.com/Fifiuba/admin-service/blob/main/LICENSE)
