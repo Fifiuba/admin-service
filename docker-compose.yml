@@ -1,0 +1,24 @@
+version: "3.9"
+
+# Declaro los servicios a utilizar
+services:
+
+  # Servicio de base de datos
+  postgres:
+    image: postgres:alpine
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    
+    
+  # Servicio de backend
+  backend:
+    build: .
+    restart: on-failure
+    ports:
+      - 8000:8000
+
