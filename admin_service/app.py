@@ -6,6 +6,7 @@ from controllers import admin_controller
 app = FastAPI()
 app.include_router(admin_controller.admin_route)
 
+
 @app.get("/")
 async def root():
     return {"msg": "Hello World"}

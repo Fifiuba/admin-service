@@ -8,6 +8,7 @@ class AdminRequest(BaseModel):
     user_name: str
     password: str
 
+
 class AdminResponse(BaseModel):
     id: int
     name: str
