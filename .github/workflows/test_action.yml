@@ -59,7 +59,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest --cov=admin_service tests/ --cov-report=xml
+          RUN_ENV='test' pytest --cov=admin_service tests/ --cov-report=xml
 
 
       #----------------------------------------------
