@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 HASH = os.getenv("PASS_HASH")
-password_context = CryptContext(schemes=[HASH], deprecated="auto")
+password_context = CryptContext(schemes=['bcrypt'], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
