@@ -20,7 +20,7 @@ async def get_admins(db: Session = Depends(database.get_db)):
 
 
 @admin_route.post(
-    "/admins",
+    "/admins/new",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_201_CREATED,
 )
