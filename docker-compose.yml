@@ -18,6 +18,9 @@ services:
   # Servicio de backend
   backend:
     build: .
+    container_name: admin-services
+    env_file:
+      - .env
     restart: on-failure
     ports:
       - 8000:8000

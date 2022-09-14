@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from .controllers import admin_controller
+from admin_service.controllers import admin_controller
 
 
 app = FastAPI()
