@@ -7,7 +7,7 @@ services:
   postgres:
     image: postgres:alpine
     ports:
-      - "5435:5432"
+      - "5435:5433"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

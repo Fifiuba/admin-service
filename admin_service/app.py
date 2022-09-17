@@ -1,16 +1,16 @@
-from fastapi import FastAPI,Depends
+from fastapi import FastAPI, Depends
 import uvicorn
 from admin_service.controllers import admin_controller
 from admin_service.security import jwt_handler
 
 
 app = FastAPI()
-app.include_router(admin_controller.admin_route)
+app.include_router(admin_controller.admin_route, prefix="/admins", tags=["Admins"])
 
 
 @app.get("/")
-async def read_items(token: str = Depends(jwt_handler.oauth2_scheme)):
-    return {"token": token}
+async def read_items():
+    return {"token": "Hola"}
 
 
 if __name__ == "__main__":
