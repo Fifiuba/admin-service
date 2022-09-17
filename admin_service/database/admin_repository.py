@@ -12,3 +12,6 @@ def create_admin(admin: schemas.AdminRequest, db: Session):
 
     admin_response = crud.create_admin(admin, db)
     return admin_response
+
+def find_by_username(user_name:str, db: Session):
+    return crud.get_admins_by_user_name(user_name, db)

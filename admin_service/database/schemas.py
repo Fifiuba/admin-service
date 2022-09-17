@@ -20,5 +20,10 @@ class AdminResponse(BaseModel):
         orm_mode = True
 
 
+class LoginAdminRequest(BaseModel):
+    user_name: str
+    password: str
+
+
 class TokenResponse(BaseModel):
     token: str

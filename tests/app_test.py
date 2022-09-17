@@ -1,11 +1,7 @@
 from fastapi.testclient import TestClient
 from fastapi import status
 from admin_service.app import app
-from admin_service.database.database import get_db, engine
-from admin_service.database.models import Base
-from admin_service.security import password_hasher,jwt_handler
-from sqlalchemy.orm import sessionmaker
-import sqlalchemy as sa
+from admin_service.security import jwt_handler,password_hasher
 
 
 client = TestClient(app)
@@ -31,20 +27,25 @@ def test_01_app_start_with_no_admins():
     data = response.json()
     assert data == []
 
-
-def test_02_when_creating_new_admin_it_should_return_token():
-    response = register_admin("admins/new")
+def test_02_when_creating_new_admin_it_should_have_encripted_pass():
+    response = register_admin('admins/')
 
     assert response.status_code == status.HTTP_201_CREATED, response.text
     data = response.json()
+    assert password_hasher.verify_password("alejo2",data["password"]) == True
+
+
+def test_03_when_loggin_in_admin_it_should_return_token():
+    response = register_admin("admins/")
+    assert response.status_code == status.HTTP_201_CREATED, response.text
+
+    login_response = client.post("admins/login",json= {"user_name":"alevillores","password": "alejo2"})
+    assert login_response.status_code == status.HTTP_200_OK, login_response.text
+    data = login_response.json()
+    actual = jwt_handler.decode_token(data["token"])
     expected = {
         "id": 1,
         "admin": True,
     }
-    actual = jwt_handler.decode_token(data['token'])
-    
+
     assert actual == expected
-
-
-
-
