@@ -2,7 +2,7 @@ from fastapi import APIRouter, status, HTTPException, Depends
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
-from admin_service.security import password_hasher
+from admin_service.security import password_hasher,jwt_handler
 
 admin_route = APIRouter()
 
@@ -20,8 +20,8 @@ async def get_admins(db: Session = Depends(database.get_db)):
 
 
 @admin_route.post(
-    "/",
-    response_model=schemas.AdminResponse,
+    "/new",
+    response_model=schemas.TokenResponse,
     status_code=status.HTTP_201_CREATED,
 )
 async def create_admin(
@@ -29,4 +29,6 @@ async def create_admin(
 ):
     admin.password = password_hasher.hash_password(admin.password)
     admin_response = admin_repository.create_admin(admin, db)
-    return admin_response
+    token = jwt_handler.create_access_token(admin_response.id, True)
+    token_data = schemas.TokenResponse(token=token)
+    return token_data

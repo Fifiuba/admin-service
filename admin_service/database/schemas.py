@@ -18,3 +18,7 @@ class AdminResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class TokenResponse(BaseModel):
+    token: str

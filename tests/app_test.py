@@ -3,7 +3,7 @@ from fastapi import status
 from admin_service.app import app
 from admin_service.database.database import get_db, engine
 from admin_service.database.models import Base
-from admin_service.security import password_hasher
+from admin_service.security import password_hasher,jwt_handler
 from sqlalchemy.orm import sessionmaker
 import sqlalchemy as sa
 
@@ -32,9 +32,19 @@ def test_01_app_start_with_no_admins():
     assert data == []
 
 
-def test_02_when_creating_new_admin_it_should_have_encripted_pass():
-    response = register_admin("admins/")
+def test_02_when_creating_new_admin_it_should_return_token():
+    response = register_admin("admins/new")
 
     assert response.status_code == status.HTTP_201_CREATED, response.text
     data = response.json()
-    assert password_hasher.verify_password("alejo2", data["password"]) == True
+    expected = {
+        "id": 1,
+        "admin": True,
+    }
+    actual = jwt_handler.decode_token(data['token'])
+    
+    assert actual == expected
+
+
+
+
