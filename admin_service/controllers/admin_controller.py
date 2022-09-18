@@ -2,13 +2,13 @@ from fastapi import APIRouter, status, HTTPException, Depends
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
-from admin_service.security import password_hasher
+from admin_service.security import password_hasher, jwt_handler
 
 admin_route = APIRouter()
 
 
 @admin_route.get(
-    "/admins",
+    "/",
     response_model=List[schemas.AdminResponse],
     status_code=status.HTTP_200_OK,
 )
@@ -20,11 +20,32 @@ async def get_admins(db: Session = Depends(database.get_db)):
 
 
 @admin_route.post(
-    "/admins/new",
+    "/",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_201_CREATED,
 )
-async def create_admin(admin: schemas.AdminRequest,db: Session = Depends(database.get_db)):
+async def create_admin(
+    admin: schemas.AdminRequest, db: Session = Depends(database.get_db)
+):
     admin.password = password_hasher.hash_password(admin.password)
     admin_response = admin_repository.create_admin(admin, db)
     return admin_response
+
+# TODO: Use Exceptions
+@admin_route.post(
+    "/login",
+    response_model=schemas.TokenResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def create_admin(
+    admin: schemas.LoginAdminRequest, db: Session = Depends(database.get_db)
+):
+    admin_response = admin_repository.find_by_username(admin.user_name, db)
+    if password_hasher.verify_password(admin.password,admin_response.password):
+
+        token = jwt_handler.create_access_token(admin_response.id, True)
+        token_data = schemas.TokenResponse(token=token)
+    else:
+        token_data = schemas.TokenResponse(token='error')
+    
+    return token_data
