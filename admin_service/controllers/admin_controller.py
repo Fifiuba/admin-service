@@ -28,9 +28,11 @@ async def get_admins(id:int ,db: Session = Depends(database.get_db)):
 
     try:
         admin = admin_repository.get_admin_by_id(id,db)
-        return admin
     except exceptions.AdminNotFoundError as error:
         raise HTTPException(**error.__dict__)
+    else:
+        return admin
+
        
 
 
@@ -43,8 +45,12 @@ async def create_admin(
     admin: schemas.AdminRequest, db: Session = Depends(database.get_db)
 ):
     admin.password = password_hasher.hash_password(admin.password)
-    admin_response = admin_repository.create_admin(admin, db)
-    return admin_response
+    try:
+        admin_response = admin_repository.create_admin(admin, db)
+    except exceptions.AdminAlreadyExists as error:
+        raise HTTPException(**error.__dict__)
+    else:
+        return admin_response
 
 # TODO: Use Exceptions
 @admin_route.post(
