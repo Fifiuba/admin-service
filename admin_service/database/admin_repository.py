@@ -7,6 +7,10 @@ def get_admins(db: Session):
     query_response = crud.get_admins(db)
     return query_response
 
+def get_admin_by_id(id:int ,db:Session):
+    query_response = crud.get_admin(id,db)
+    return query_response
+
 
 def create_admin(admin: schemas.AdminRequest, db: Session):
 

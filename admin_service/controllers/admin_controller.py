@@ -18,6 +18,17 @@ async def get_admins(db: Session = Depends(database.get_db)):
 
     return admins
 
+@admin_route.get(
+    "/{id}",
+    response_model=schemas.AdminResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def get_admins(id:int ,db: Session = Depends(database.get_db)):
+
+    admin = admin_repository.get_admin_by_id(id,db)
+
+    return admin
+
 
 @admin_route.post(
     "/",

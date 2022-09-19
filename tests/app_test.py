@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from fastapi import status
 from admin_service.app import app
 from admin_service.security import jwt_handler,password_hasher
+from admin_service.database import schemas, database,crud
 
 
 client = TestClient(app)
@@ -49,3 +50,28 @@ def test_03_when_loggin_in_admin_it_should_return_token():
     }
 
     assert actual == expected
+
+def test_04_should_be_able_to_see_profile_of_one_admin():
+    admins = []
+    for i in range(3):
+        admins.append(schemas.AdminRequest(name='admin',last_name='admin',user_name=str(i),password='test'))
+    db = database.get_local_session()
+    for admin in admins:
+         crud.create_admin(admin,db)
+
+    response = client.get("admins/1")
+    assert response.status_code == status.HTTP_200_OK
+
+    data = response.json()
+    expected = {
+        "id":1,
+        "name": "Alejo",
+        "last_name": "Villores",
+        "user_name": "alevillores",
+    }
+    assert data["id"] == expected["id"]
+    assert data["name"] == expected["name"]
+    assert data["last_name"] == expected["last_name"]
+    assert data["user_name"] == expected["user_name"]
+    assert password_hasher.verify_password("alejo2",data["password"]) == True
+
