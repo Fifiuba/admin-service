@@ -37,9 +37,7 @@ def test_02_when_creating_new_admin_it_should_have_encripted_pass():
 
 
 def test_03_when_loggin_in_admin_it_should_return_token():
-    response = register_admin("admins/")
-    assert response.status_code == status.HTTP_201_CREATED, response.text
-
+    
     login_response = client.post("admins/login",json= {"user_name":"alevillores","password": "alejo2"})
     assert login_response.status_code == status.HTTP_200_OK, login_response.text
     data = login_response.json()
@@ -74,4 +72,11 @@ def test_04_should_be_able_to_see_profile_of_one_admin():
     assert data["last_name"] == expected["last_name"]
     assert data["user_name"] == expected["user_name"]
     assert password_hasher.verify_password("alejo2",data["password"]) == True
+
+def test_05_admin_not_found_shoul_raise_http_error_code_404():
+    response = client.get("admins/100")
+    data = response.json()
+    assert response.status_code == status.HTTP_404_NOT_FOUND, response.text
+    assert data['detail'] == "The admin does not exists"
+
 

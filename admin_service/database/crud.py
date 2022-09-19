@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from . import models, schemas
+from admin_service.errors import exceptions
 
 
 def get_admin(admin_id: int, db: Session):
@@ -17,7 +18,15 @@ def get_admins(db: Session):
     return db.query(models.Admin).all()
 
 
+def admin_exists(user_name:str, db: Session):
+    q = get_admins_by_user_name(user_name, db)
+    return True if q != None  else False
+
+
 def create_admin(admin: schemas.AdminRequest, db: Session):
+    if admin_exists(admin.user_name, db):
+        raise exceptions.AdminAlreadyExists
+
     db_admin = models.Admin(
         name=admin.name,
         last_name=admin.last_name,

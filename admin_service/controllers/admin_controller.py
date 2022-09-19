@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
 from admin_service.security import password_hasher, jwt_handler
+from admin_service.errors import exceptions
 
 admin_route = APIRouter()
 
@@ -25,9 +26,12 @@ async def get_admins(db: Session = Depends(database.get_db)):
 )
 async def get_admins(id:int ,db: Session = Depends(database.get_db)):
 
-    admin = admin_repository.get_admin_by_id(id,db)
-
-    return admin
+    try:
+        admin = admin_repository.get_admin_by_id(id,db)
+        return admin
+    except exceptions.AdminNotFoundError as error:
+        raise HTTPException(**error.__dict__)
+       
 
 
 @admin_route.post(

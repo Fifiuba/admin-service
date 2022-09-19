@@ -1,4 +1,5 @@
 from . import database, models, schemas, crud
+from admin_service.errors import exceptions
 from typing import List
 from sqlalchemy.orm import Session
 
@@ -9,6 +10,8 @@ def get_admins(db: Session):
 
 def get_admin_by_id(id:int ,db:Session):
     query_response = crud.get_admin(id,db)
+    if not query_response:
+        raise exceptions.AdminNotFoundError
     return query_response
 
 
