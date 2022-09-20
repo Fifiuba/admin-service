@@ -22,7 +22,8 @@ def register_admin(endpoint):
 
 
 def test_01_app_start_with_no_admins():
-    response = client.get("admins/")
+    token = jwt_handler.create_access_token(1, True)
+    response = client.get("admins/",headers={'Authorization': f'Baerer {token}'})
     assert response.status_code == status.HTTP_200_OK
 
     data = response.json()
@@ -97,7 +98,7 @@ def test_06_admin_already_exists_should_raise_http_error_code_409():
     assert data["detail"] == "Admin already exists"
 
 
-def test_03_when_loggin_with_bad_credentials_should_get_401_error():
+def test_07_when_loggin_with_bad_credentials_should_get_401_error():
 
     response = client.post(
         "admins/login", json={"user_name": "alevillores", "password": "mal_password"}
@@ -107,9 +108,7 @@ def test_03_when_loggin_with_bad_credentials_should_get_401_error():
     assert data["detail"] == "The username/password is incorrect"
 
 
-# def test():
-#    token = jwt_handler.create_access_token(1, True)
-#    response = client.get("admins/",headers={'Authorization': f'Baerer {token}'})
-#    assert response.status_code == status.HTTP_200_OK
-#    data = response.json()
-#    assert 1 == 1
+def test_08_get_admins_should_have_authorazation():
+    token = jwt_handler.create_access_token(1, True)
+    response = client.get("admins/",headers={'Authorization': f'Baerer {token}'})
+    assert response.status_code == status.HTTP_200_OK

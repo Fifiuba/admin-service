@@ -2,7 +2,7 @@ from fastapi import APIRouter, status, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
-from admin_service.security import password_hasher, jwt_handler
+from admin_service.security import password_hasher, jwt_handler,authorization
 from admin_service.errors import exceptions
 
 admin_route = APIRouter()
@@ -13,11 +13,14 @@ admin_route = APIRouter()
     response_model=List[schemas.AdminResponse],
     status_code=status.HTTP_200_OK,
 )
-async def get_admins(db: Session = Depends(database.get_db)):
-    # print(req.headers) req: Request
-    admins = admin_repository.get_admins(db)
-
-    return admins
+async def get_admins(req: Request,db: Session = Depends(database.get_db)):
+    try:
+        authorization.is_auth(req.headers)
+    except exceptions.AdminUnauthorized as error:
+        raise HTTPException(**error.__dict__)
+    else:
+        admins = admin_repository.get_admins(db)
+        return admins
 
 
 @admin_route.get(
