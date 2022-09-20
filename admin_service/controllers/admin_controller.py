@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi import APIRouter, status, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
@@ -14,7 +14,7 @@ admin_route = APIRouter()
     status_code=status.HTTP_200_OK,
 )
 async def get_admins(db: Session = Depends(database.get_db)):
-
+    #print(req.headers) req: Request
     admins = admin_repository.get_admins(db)
 
     return admins
@@ -34,8 +34,6 @@ async def get_admins(id:int ,db: Session = Depends(database.get_db)):
         return admin
 
        
-
-
 @admin_route.post(
     "/",
     response_model=schemas.AdminResponse,
@@ -52,7 +50,7 @@ async def create_admin(
     else:
         return admin_response
 
-# TODO: Use Exceptions
+
 @admin_route.post(
     "/login",
     response_model=schemas.TokenResponse,
@@ -61,12 +59,11 @@ async def create_admin(
 async def create_admin(
     admin: schemas.LoginAdminRequest, db: Session = Depends(database.get_db)
 ):
-    admin_response = admin_repository.find_by_username(admin.user_name, db)
-    if password_hasher.verify_password(admin.password,admin_response.password):
-
+    try:
+        admin_response = admin_repository.auth(admin.user_name,admin.password,db)
         token = jwt_handler.create_access_token(admin_response.id, True)
         token_data = schemas.TokenResponse(token=token)
-    else:
-        token_data = schemas.TokenResponse(token='error')
+    except exceptions.AdminBadCredentials as error:
+        raise HTTPException(**error.__dict__)
     
     return token_data
