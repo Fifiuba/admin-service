@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from admin_service.controllers import admin_controller
-from admin_service.security import jwt_handler
+
+
 app = FastAPI()
 
 app.add_middleware(

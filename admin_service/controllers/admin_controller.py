@@ -14,26 +14,27 @@ admin_route = APIRouter()
     status_code=status.HTTP_200_OK,
 )
 async def get_admins(db: Session = Depends(database.get_db)):
-    #print(req.headers) req: Request
+    # print(req.headers) req: Request
     admins = admin_repository.get_admins(db)
 
     return admins
+
 
 @admin_route.get(
     "/{id}",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_200_OK,
 )
-async def get_admins(id:int ,db: Session = Depends(database.get_db)):
+async def get_admin(id: int, db: Session = Depends(database.get_db)):
 
     try:
-        admin = admin_repository.get_admin_by_id(id,db)
+        admin = admin_repository.get_admin_by_id(id, db)
     except exceptions.AdminNotFoundError as error:
         raise HTTPException(**error.__dict__)
     else:
         return admin
 
-       
+
 @admin_route.post(
     "/",
     response_model=schemas.AdminResponse,
@@ -56,14 +57,14 @@ async def create_admin(
     response_model=schemas.TokenResponse,
     status_code=status.HTTP_200_OK,
 )
-async def create_admin(
+async def login_admin(
     admin: schemas.LoginAdminRequest, db: Session = Depends(database.get_db)
 ):
     try:
-        admin_response = admin_repository.auth(admin.user_name,admin.password,db)
+        admin_response = admin_repository.auth(admin.user_name, admin.password, db)
         token = jwt_handler.create_access_token(admin_response.id, True)
         token_data = schemas.TokenResponse(token=token)
     except exceptions.AdminBadCredentials as error:
         raise HTTPException(**error.__dict__)
-    
+
     return token_data

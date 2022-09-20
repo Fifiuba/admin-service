@@ -7,8 +7,10 @@ from admin_service.errors import exceptions
 def get_admin(admin_id: int, db: Session):
     return db.query(models.Admin).filter(models.Admin.id == admin_id).first()
 
+
 def get_admins_by_name(name: str, db: Session):
     return db.query(models.Admin).filter(models.Admin.name == name).all()
+
 
 def get_admins_by_user_name(user_name: str, db: Session):
     return db.query(models.Admin).filter(models.Admin.user_name == user_name).first()
@@ -18,9 +20,9 @@ def get_admins(db: Session):
     return db.query(models.Admin).all()
 
 
-def admin_exists(user_name:str, db: Session):
+def admin_exists(user_name: str, db: Session):
     q = get_admins_by_user_name(user_name, db)
-    return True if q != None  else False
+    return True if q is not None else False
 
 
 def create_admin(admin: schemas.AdminRequest, db: Session):
