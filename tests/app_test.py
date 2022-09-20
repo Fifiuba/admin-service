@@ -50,7 +50,8 @@ def test_03_when_loggin_in_admin_it_should_return_token():
         "admin": True,
     }
 
-    assert actual == expected
+    assert actual['id'] ==  expected['id']
+    assert actual['admin'] ==  expected['admin']
 
 
 def test_04_should_be_able_to_see_profile_of_one_admin():

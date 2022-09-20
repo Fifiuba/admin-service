@@ -1,1 +1,1 @@
-RUN_ENV='test' poetry run pytest --capture=no
+RUN_ENV='test' poetry run pytest -v --capture=no
