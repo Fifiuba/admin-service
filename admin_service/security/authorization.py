@@ -8,12 +8,15 @@ validator = re.compile(r'^(Baerer\s)(.*)')
 
 def is_auth(headers):
     header =  headers.get('authorization')
-    print(header)
     if header is not None:
         if validator.match(header):
-            print(validator.search(header).groups())
             return True
         else:
             raise exceptions.AdminUnauthorized
     else:
         raise exceptions.AdminUnauthorized
+
+def get_token(headers):
+    header = headers.get('authorization')
+    _b,token = validator.search(header).groups()
+    return token

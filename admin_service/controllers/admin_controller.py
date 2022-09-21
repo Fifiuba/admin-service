@@ -37,6 +37,22 @@ async def get_admin(id: int, db: Session = Depends(database.get_db)):
     else:
         return admin
 
+@admin_route.get(
+    "/my/profile",
+    response_model=schemas.AdminResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def me(req: Request, db: Session = Depends(database.get_db)):
+    try:
+        authorization.is_auth(req.headers)
+        token = authorization.get_token(req.headers)
+        print(token)
+    except exceptions.AdminUnauthorized as error:
+        raise HTTPException(**error.__dict__)
+    else:
+        token_id = jwt_handler.decode_token(token)['id']
+        admin = admin_repository.get_admin_by_id(token_id, db)
+        return admin
 
 @admin_route.post(
     "/",
@@ -71,3 +87,6 @@ async def login_admin(
         raise HTTPException(**error.__dict__)
 
     return token_data
+
+
+
