@@ -9,6 +9,7 @@ client = TestClient(app)
 
 
 def register_admin(endpoint):
+    token = jwt_handler.create_access_token(1, True)
     response = client.post(
         endpoint,
         json={
@@ -17,6 +18,7 @@ def register_admin(endpoint):
             "user_name": "alevillores",
             "password": "alejo2",
         },
+        headers={"Authorization": f"Baerer {token}"},
     )
     return response
 
@@ -137,3 +139,18 @@ def test_09_as_logged_user_i_can_se_my_profile():
     assert data["name"], expected["name"]
     assert data["last_name"], expected["last_name"]
     assert data["user_name"], expected["user_name"]
+
+
+def test_10_user_with_no_token_cant_register():
+    response = client.post(
+        "admins/",
+        json={
+            "name": "Test",
+            "last_name": "Villores",
+            "user_name": "no_admin",
+            "password": "no_user",
+        },
+    )
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
+    data = response.json()
+    assert data["detail"] == "Unauthorized"

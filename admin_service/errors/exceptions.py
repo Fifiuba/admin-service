@@ -17,7 +17,7 @@ class AdminBadCredentials(AdminInfoException):
 class AdminUnauthorized(AdminInfoException):
     def __init__(self):
         self.status_code = 401
-        self.detail = "Unauthorized "
+        self.detail = "Unauthorized"
 
 
 class AdminNotFoundError(AdminInfoException):

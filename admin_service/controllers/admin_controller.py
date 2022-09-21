@@ -47,7 +47,6 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
     try:
         authorization.is_auth(req.headers)
         token = authorization.get_token(req.headers)
-        print(token)
     except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
     else:
@@ -62,12 +61,15 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
     status_code=status.HTTP_201_CREATED,
 )
 async def create_admin(
-    admin: schemas.AdminRequest, db: Session = Depends(database.get_db)
+    admin: schemas.AdminRequest, req: Request, db: Session = Depends(database.get_db)
 ):
     admin.password = password_hasher.hash_password(admin.password)
     try:
+        authorization.is_auth(req.headers)
         admin_response = admin_repository.create_admin(admin, db)
     except exceptions.AdminAlreadyExists as error:
+        raise HTTPException(**error.__dict__)
+    except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
     else:
         return admin_response
