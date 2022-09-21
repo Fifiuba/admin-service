@@ -23,7 +23,7 @@ def register_admin(endpoint):
 
 def test_01_app_start_with_no_admins():
     token = jwt_handler.create_access_token(1, True)
-    response = client.get("admins/",headers={'Authorization': f'Baerer {token}'})
+    response = client.get("admins/", headers={"Authorization": f"Baerer {token}"})
     assert response.status_code == status.HTTP_200_OK
 
     data = response.json()
@@ -51,8 +51,8 @@ def test_03_when_loggin_in_admin_it_should_return_token():
         "admin": True,
     }
 
-    assert actual['id'] ==  expected['id']
-    assert actual['admin'] ==  expected['admin']
+    assert actual["id"] == expected["id"]
+    assert actual["admin"] == expected["admin"]
 
 
 def test_04_should_be_able_to_see_profile_of_one_admin():
@@ -110,9 +110,8 @@ def test_07_when_loggin_with_bad_credentials_should_get_401_error():
 
 def test_08_get_admins_should_have_authorazation():
     token = jwt_handler.create_access_token(1, True)
-    response = client.get("admins/",headers={'Authorization': f'Baerer {token}'})
+    response = client.get("admins/", headers={"Authorization": f"Baerer {token}"})
     assert response.status_code == status.HTTP_200_OK
-    data = response.json()
 
 
 def test_09_as_logged_user_i_can_se_my_profile():
@@ -121,10 +120,10 @@ def test_09_as_logged_user_i_can_se_my_profile():
     )
     assert login_response.status_code == status.HTTP_200_OK, login_response.text
 
-    token = login_response.json()['token']
-    header = {'Authorization': f'Baerer {token}'}
-
-    response = client.get("admins/my/profile",headers={'Authorization': f'Baerer {token}'})
+    token = login_response.json()["token"]
+    response = client.get(
+        "admins/my/profile", headers={"Authorization": f"Baerer {token}"}
+    )
     assert response.status_code == status.HTTP_200_OK, response.text
     data = response.json()
     expected = {
@@ -134,7 +133,7 @@ def test_09_as_logged_user_i_can_se_my_profile():
         "user_name": "alevillores",
     }
 
-    assert(data["id"], expected["id"])
-    assert( data["name"] , expected["name"])
-    assert( data["last_name"] , expected["last_name"])
-    assert( data["user_name"] , expected["user_name"])
+    assert data["id"], expected["id"]
+    assert data["name"], expected["name"]
+    assert data["last_name"], expected["last_name"]
+    assert data["user_name"], expected["user_name"]

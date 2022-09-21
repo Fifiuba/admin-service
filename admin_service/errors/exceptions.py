@@ -13,10 +13,12 @@ class AdminBadCredentials(AdminInfoException):
         self.status_code = 401
         self.detail = "The username/password is incorrect"
 
+
 class AdminUnauthorized(AdminInfoException):
     def __init__(self):
         self.status_code = 401
         self.detail = "Unauthorized "
+
 
 class AdminNotFoundError(AdminInfoException):
     def __init__(self):

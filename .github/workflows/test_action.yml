@@ -73,4 +73,6 @@ jobs:
       #              run flake8 lintin
       #----------------------------------------------
       - name: Run lintin with flake8
-        run: echo tenemos que agregarlo
+        run: |
+          poetry run black admin_service/
+          poetry run flake8 admin_service/

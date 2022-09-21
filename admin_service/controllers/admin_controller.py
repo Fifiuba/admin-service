@@ -2,7 +2,7 @@ from fastapi import APIRouter, status, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
-from admin_service.security import password_hasher, jwt_handler,authorization
+from admin_service.security import password_hasher, jwt_handler, authorization
 from admin_service.errors import exceptions
 
 admin_route = APIRouter()
@@ -13,7 +13,7 @@ admin_route = APIRouter()
     response_model=List[schemas.AdminResponse],
     status_code=status.HTTP_200_OK,
 )
-async def get_admins(req: Request,db: Session = Depends(database.get_db)):
+async def get_admins(req: Request, db: Session = Depends(database.get_db)):
     try:
         authorization.is_auth(req.headers)
     except exceptions.AdminUnauthorized as error:
@@ -37,6 +37,7 @@ async def get_admin(id: int, db: Session = Depends(database.get_db)):
     else:
         return admin
 
+
 @admin_route.get(
     "/my/profile",
     response_model=schemas.AdminResponse,
@@ -50,9 +51,10 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
     except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
     else:
-        token_id = jwt_handler.decode_token(token)['id']
+        token_id = jwt_handler.decode_token(token)["id"]
         admin = admin_repository.get_admin_by_id(token_id, db)
         return admin
+
 
 @admin_route.post(
     "/",
@@ -87,6 +89,3 @@ async def login_admin(
         raise HTTPException(**error.__dict__)
 
     return token_data
-
-
-
