@@ -28,11 +28,14 @@ async def get_admins(req: Request, db: Session = Depends(database.get_db)):
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_200_OK,
 )
-async def get_admin(id: int, db: Session = Depends(database.get_db)):
+async def get_admin(id: int, req: Request, db: Session = Depends(database.get_db)):
 
     try:
+        authorization.is_auth(req.headers)
         admin = admin_repository.get_admin_by_id(id, db)
     except exceptions.AdminNotFoundError as error:
+        raise HTTPException(**error.__dict__)
+    except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
     else:
         return admin

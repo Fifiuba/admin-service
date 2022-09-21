@@ -68,8 +68,8 @@ def test_04_should_be_able_to_see_profile_of_one_admin():
     db = database.get_local_session()
     for admin in admins:
         crud.create_admin(admin, db)
-
-    response = client.get("admins/1")
+    token = jwt_handler.create_access_token(1, True)
+    response = client.get("admins/1", headers={"Authorization": f"Baerer {token}"})
     assert response.status_code == status.HTTP_200_OK
 
     data = response.json()
@@ -87,7 +87,8 @@ def test_04_should_be_able_to_see_profile_of_one_admin():
 
 
 def test_05_admin_not_found_should_raise_http_error_code_404():
-    response = client.get("admins/100")
+    token = jwt_handler.create_access_token(1, True)
+    response = client.get("admins/100", headers={"Authorization": f"Baerer {token}"})
     data = response.json()
     assert response.status_code == status.HTTP_404_NOT_FOUND, response.text
     assert data["detail"] == "The admin does not exists"
