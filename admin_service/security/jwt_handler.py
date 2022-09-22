@@ -38,3 +38,6 @@ def create_access_token(admin_id: int, admin: bool) -> str:
 def decode_token(token):
     payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[ALGORITHM])
     return payload
+
+
+print(create_access_token(1, True))

@@ -16,18 +16,19 @@ def get_admin_by_id(id: int, db: Session):
     return query_response
 
 
-def auth(user_name: str, password: str, db: Session):
-    admin = crud.get_admins_by_user_name(user_name, db)
+def auth(email: str, uid: str, db: Session):
+    admin = crud.get_admins_by_email(email, db)
     if not admin:
         raise exceptions.AdminBadCredentials
-    if not password_hasher.verify_password(password, admin.password):
+    if not uid == admin.token_id:
         raise exceptions.AdminBadCredentials
 
     return admin
 
 
-def create_admin(admin: schemas.AdminRequest, db: Session):
-    admin_response = crud.create_admin(admin, db)
+def create_admin(admin: schemas.AdminRequest,uid:str, db: Session):
+    admin.password = password_hasher.hash_password(admin.password)
+    admin_response = crud.create_admin(admin,uid, db)
     return admin_response
 
 

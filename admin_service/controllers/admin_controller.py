@@ -2,7 +2,7 @@ from fastapi import APIRouter, status, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from typing import List
 from admin_service.database import admin_repository, schemas, database
-from admin_service.security import password_hasher, jwt_handler, authorization
+from admin_service.security import password_hasher, jwt_handler, authorization,firebase
 from admin_service.errors import exceptions
 
 admin_route = APIRouter()
@@ -66,10 +66,10 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
 async def create_admin(
     admin: schemas.AdminRequest, req: Request, db: Session = Depends(database.get_db)
 ):
-    admin.password = password_hasher.hash_password(admin.password)
     try:
         authorization.is_auth(req.headers)
-        admin_response = admin_repository.create_admin(admin, db)
+        uid = firebase.create_admin(admin.email,admin.password)
+        admin_response = admin_repository.create_admin(admin,uid,db)
     except exceptions.AdminAlreadyExists as error:
         raise HTTPException(**error.__dict__)
     except exceptions.AdminUnauthorized as error:
@@ -87,7 +87,8 @@ async def login_admin(
     admin: schemas.LoginAdminRequest, db: Session = Depends(database.get_db)
 ):
     try:
-        admin_response = admin_repository.auth(admin.user_name, admin.password, db)
+        email,uid = firebase.valid_admin(admin)
+        admin_response = admin_repository.auth(email,uid, db)
         token = jwt_handler.create_access_token(admin_response.id, True)
         token_data = schemas.TokenResponse(token=token)
     except exceptions.AdminBadCredentials as error:
