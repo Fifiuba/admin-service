@@ -3,7 +3,13 @@
 [![GitHub issues](https://img.shields.io/github/issues/Fifiuba/admin-service?&style=flat-square)](https://github.com/Fifiuba/admin-service/issues)
 [![GitHub license](https://img.shields.io/github/license/Fifiuba/admin-service?&style=flat-square)](https://github.com/Fifiuba/admin-service/blob/main/LICENSE)
 
-### Instalación
+## Indice de informacion
+1. **Instalacion del entorno**
+2. **Propósito del servicio de administradores**
+3. **Datalles de implementación**
+
+
+### Instalación del entorno
 
 Version de python
 ```shell
@@ -36,3 +42,32 @@ Pasos para correr el linter
 ```bash
 poetry run flake8 <carpeta>
 ```
+
+Pasos para levantar el entorno Docker
+```bash
+docker-compose build --no-cache
+clear
+docker-compose up
+```
+
+Pasos para bajar el entorno Docker
+```bash
+docker-compose down -v
+```
+
+### Propósito del servicio de administradores
+---
+
+El proposito del servicio de adminsitradores es atender los diferentes request necesarios que poseen los administradores, este servicio otorga la capacidad de crear/leer/editar y eliminar diferentes administradores.
+
+Haciendo uso de la autenticacion de Google Firebase para su desarrollo
+
+### Detalles de implementación
+---
+Diagrama de clases general
+
+![uml](uml.png)
+
+Diagrama de secuencia de una creacion de administrador
+
+![](secuence.png)
