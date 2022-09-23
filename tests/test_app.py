@@ -11,9 +11,9 @@ class TestAcceptance:
     client = TestClient(app)
 
     @pytest.mark.skip("FIX!!!!!!")
-    def register_admin(endpoint):
+    def register_admin(self, endpoint):
         token = jwt_handler.create_access_token(1, True)
-        response = client.post(
+        response = self.client.post(
             endpoint,
             json={
                 "name": "Alejo",
@@ -25,26 +25,25 @@ class TestAcceptance:
         )
         return response
 
-
     def test_01_app_start_with_no_admins(self):
-        response = self.client.get("admins/", headers={"Authorization": f"Bearer {self.token}"})
+        response = self.client.get(
+            "admins/", headers={"Authorization": f"Bearer {self.token}"}
+        )
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
         assert data == []
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_02_when_creating_new_admin_it_should_have_encripted_pass():
-        response = register_admin("admins/")
+    def test_02_when_creating_new_admin_it_should_have_encripted_pass(self):
+        response = self.register_admin("admins/")
         assert response.status_code == status.HTTP_201_CREATED, response.text
         data = response.json()
         assert password_hasher.verify_password("alejo2", data["password"]) is True
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_03_when_loggin_in_admin_it_should_return_token():
+    def test_03_when_loggin_in_admin_it_should_return_token(self):
 
-        login_response = client.post(
+        login_response = self.client.post(
             "admins/login",
             json={
                 "email": "por_post@gmail.com",
@@ -62,9 +61,8 @@ class TestAcceptance:
         assert actual["id"] == expected["id"]
         assert actual["admin"] == expected["admin"]
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_04_should_be_able_to_see_profile_of_one_admin():
+    def test_04_should_be_able_to_see_profile_of_one_admin(self):
         admins = []
         for i in range(3):
             admins.append(
@@ -76,7 +74,9 @@ class TestAcceptance:
         for admin in admins:
             crud.create_admin(admin, db)
         token = jwt_handler.create_access_token(1, True)
-        response = client.get("admins/1", headers={"Authorization": f"Baerer {token}"})
+        response = self.client.get(
+            "admins/1", headers={"Authorization": f"Baerer {token}"}
+        )
         assert response.status_code == status.HTTP_200_OK
 
         data = response.json()
@@ -92,51 +92,51 @@ class TestAcceptance:
         assert data["user_name"] == expected["user_name"]
         assert password_hasher.verify_password("alejo2", data["password"]) is True
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_05_admin_not_found_should_raise_http_error_code_404():
+    def test_05_admin_not_found_should_raise_http_error_code_404(self):
         token = jwt_handler.create_access_token(1, True)
-        response = client.get("admins/100", headers={"Authorization": f"Baerer {token}"})
+        response = self.client.get(
+            "admins/100", headers={"Authorization": f"Baerer {token}"}
+        )
         data = response.json()
         assert response.status_code == status.HTTP_404_NOT_FOUND, response.text
         assert data["detail"] == "The admin does not exists"
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_06_admin_already_exists_should_raise_http_error_code_409():
-        response = register_admin("admins/")
+    def test_06_admin_already_exists_should_raise_http_error_code_409(self):
+        response = self.register_admin("admins/")
         data = response.json()
         assert response.status_code == status.HTTP_409_CONFLICT, response.text
         assert data["detail"] == "Admin already exists"
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_07_when_loggin_with_bad_credentials_should_get_401_error():
+    def test_07_when_loggin_with_bad_credentials_should_get_401_error(self):
 
-        response = client.post(
-            "admins/login", json={"user_name": "alevillores", "password": "mal_password"}
+        response = self.client.post(
+            "admins/login",
+            json={"user_name": "alevillores", "password": "mal_password"},
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
         data = response.json()
         assert data["detail"] == "The username/password is incorrect"
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_08_get_admins_should_have_authorazation():
+    def test_08_get_admins_should_have_authorazation(self):
         token = jwt_handler.create_access_token(1, True)
-        response = client.get("admins/", headers={"Authorization": f"Baerer {token}"})
+        response = self.client.get(
+            "admins/", headers={"Authorization": f"Baerer {token}"}
+        )
         assert response.status_code == status.HTTP_200_OK
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_09_as_logged_user_i_can_se_my_profile():
-        login_response = client.post(
+    def test_09_as_logged_user_i_can_se_my_profile(self):
+        login_response = self.client.post(
             "admins/login", json={"user_name": "alevillores", "password": "alejo2"}
         )
         assert login_response.status_code == status.HTTP_200_OK, login_response.text
 
         token = login_response.json()["token"]
-        response = client.get(
+        response = self.client.get(
             "admins/my/profile", headers={"Authorization": f"Baerer {token}"}
         )
         assert response.status_code == status.HTTP_200_OK, response.text
@@ -153,10 +153,9 @@ class TestAcceptance:
         assert data["last_name"], expected["last_name"]
         assert data["user_name"], expected["user_name"]
 
-
     @pytest.mark.skip("FIX!!!!!!")
-    def test_10_user_with_no_token_cant_register():
-        response = client.post(
+    def test_10_user_with_no_token_cant_register(self):
+        response = self.client.post(
             "admins/",
             json={
                 "name": "Test",

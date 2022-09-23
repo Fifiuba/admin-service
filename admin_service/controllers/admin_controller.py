@@ -15,7 +15,7 @@ admin_route = APIRouter()
 )
 async def get_admins(req: Request, db: Session = Depends(database.get_db)):
     try:
-        _token = authorization.is_auth(req.headers)
+        authorization.is_auth(req.headers)
     except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
     else:

@@ -7,7 +7,7 @@ if "RUN_ENV" in os.environ.keys() and os.environ["RUN_ENV"] == "test":
     from admin_service.security.firebase_mock import FirebaseMock
 
     firebase = FirebaseMock()
-    default_app = "def"    
+    default_app = "def"
 else:
 
     from admin_service.errors import exceptions
