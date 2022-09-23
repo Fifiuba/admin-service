@@ -23,6 +23,21 @@ class TestAcceptance:
         )
         return response
 
+    def create_people(self, n):
+        admins = []
+        for i in range(n):
+            admins.append(
+                schemas.AdminRequest(
+                    name="admin",
+                    last_name="admin",
+                    email=f"{i}@gmail.com",
+                    password="test",
+                )
+            )
+        db = database.get_local_session()
+        for admin in admins:
+            crud.create_admin(admin, "token_id", db)
+
     def test_01_app_start_with_no_admins(self):
         response = self.client.get(
             "admins/", headers={"Authorization": f"Bearer {self.token}"}
@@ -57,42 +72,32 @@ class TestAcceptance:
         assert actual["id"] == expected["id"]
         assert actual["admin"] == expected["admin"]
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_04_should_be_able_to_see_profile_of_one_admin(self):
-        admins = []
-        for i in range(3):
-            admins.append(
-                schemas.AdminRequest(
-                    name="admin", last_name="admin", user_name=str(i), password="test"
-                )
-            )
-        db = database.get_local_session()
-        for admin in admins:
-            crud.create_admin(admin, db)
-        token = jwt_handler.create_access_token(1, True)
         response = self.client.get(
-            "admins/1", headers={"Authorization": f"Baerer {token}"}
+            "admins/1", headers={"Authorization": f"Bearer {self.token}"}
         )
         assert response.status_code == status.HTTP_200_OK
 
         data = response.json()
-        expected = {
-            "id": 1,
-            "name": "Alejo",
-            "last_name": "Villores",
-            "user_name": "alevillores",
-        }
-        assert data["id"] == expected["id"]
-        assert data["name"] == expected["name"]
-        assert data["last_name"] == expected["last_name"]
-        assert data["user_name"] == expected["user_name"]
+
+        assert data["id"] == 1
+        assert data["name"] == "Alejo"
+        assert data["last_name"] == "Villores"
+        assert data["email"] == "alevillores@hotmail.com"
         assert password_hasher.verify_password("alejo2", data["password"]) is True
 
-    @pytest.mark.skip("FIX!!!!!!")
-    def test_05_admin_not_found_should_raise_http_error_code_404(self):
-        token = jwt_handler.create_access_token(1, True)
+    def test_11_should_five_admins_registered(self):
+        self.create_people(4)
         response = self.client.get(
-            "admins/100", headers={"Authorization": f"Baerer {token}"}
+            "admins/", headers={"Authorization": f"Bearer {self.token}"}
+        )
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert len(data) == 5
+
+    def test_05_admin_not_found_should_raise_http_error_code_404(self):
+        response = self.client.get(
+            "admins/100", headers={"Authorization": f"Bearer {self.token}"}
         )
         data = response.json()
         assert response.status_code == status.HTTP_404_NOT_FOUND, response.text
