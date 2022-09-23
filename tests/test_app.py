@@ -10,9 +10,7 @@ class TestAcceptance:
     token = jwt_handler.create_access_token(1, True)
     client = TestClient(app)
 
-    @pytest.mark.skip("FIX!!!!!!")
     def register_admin(self, endpoint):
-        token = jwt_handler.create_access_token(1, True)
         response = self.client.post(
             endpoint,
             json={
@@ -21,7 +19,7 @@ class TestAcceptance:
                 "email": "alevillores@hotmail.com",
                 "password": "alejo2",
             },
-            headers={"Authorization": f"Baerer {token}"},
+            headers={"Authorization": f"Bearer {self.token}"},
         )
         return response
 
@@ -33,7 +31,6 @@ class TestAcceptance:
         data = response.json()
         assert data == []
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_02_when_creating_new_admin_it_should_have_encripted_pass(self):
         response = self.register_admin("admins/")
         assert response.status_code == status.HTTP_201_CREATED, response.text
