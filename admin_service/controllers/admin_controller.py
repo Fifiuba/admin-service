@@ -64,7 +64,10 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
     status_code=status.HTTP_201_CREATED,
 )
 async def create_admin(
-    admin: schemas.AdminRequest, req: Request, db: Session = Depends(database.get_db)
+    admin: schemas.AdminRequest,
+    req: Request,
+    db: Session = Depends(database.get_db),
+    firebase=Depends(firebase.get_fb),
 ):
     try:
         authorization.is_auth(req.headers)
