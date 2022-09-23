@@ -71,7 +71,6 @@ async def create_admin(
     try:
         authorization.is_auth(req.headers)
         uid = firebase.create_admin(admin.email, admin.password)
-        print(uid)
         admin_response = admin_repository.create_admin(admin, uid, db)
     except exceptions.AdminAlreadyExists as error:
         raise HTTPException(**error.__dict__)
@@ -87,7 +86,9 @@ async def create_admin(
     status_code=status.HTTP_200_OK,
 )
 async def login_admin(
-    admin: schemas.LoginAdminRequest, db: Session = Depends(database.get_db)
+    admin: schemas.LoginAdminRequest,
+    db: Session = Depends(database.get_db),
+    firebase=Depends(firebase.get_fb),
 ):
     try:
         email, uid = firebase.valid_admin(admin)

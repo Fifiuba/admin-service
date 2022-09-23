@@ -37,13 +37,12 @@ class TestAcceptance:
         data = response.json()
         assert password_hasher.verify_password("alejo2", data["password"]) is True
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_03_when_loggin_in_admin_it_should_return_token(self):
-
+        self.register_admin("admins/")
         login_response = self.client.post(
             "admins/login",
             json={
-                "email": "por_post@gmail.com",
+                "email": "alevillores@hotmail.com",
                 "password": "kEqofVcDh1bw4lzQkdFSXr4VvLu1",
             },
         )
