@@ -19,7 +19,7 @@ def get_admin_by_id(id: int, db: Session):
 def auth(email: str, uid: str, db: Session):
     admin = crud.get_admins_by_email(email, db)
     if not admin:
-        raise exceptions.AdminNotFoundError
+        raise exceptions.AdminBadCredentials
     if not uid == admin.token_id:
         raise exceptions.AdminBadCredentials
 

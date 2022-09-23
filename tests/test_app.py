@@ -1,4 +1,3 @@
-import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 from admin_service.app import app
@@ -86,15 +85,6 @@ class TestAcceptance:
         assert data["email"] == "alevillores@hotmail.com"
         assert password_hasher.verify_password("alejo2", data["password"]) is True
 
-    def test_11_should_five_admins_registered(self):
-        self.create_people(4)
-        response = self.client.get(
-            "admins/", headers={"Authorization": f"Bearer {self.token}"}
-        )
-        assert response.status_code == status.HTTP_200_OK
-        data = response.json()
-        assert len(data) == 5
-
     def test_05_admin_not_found_should_raise_http_error_code_404(self):
         response = self.client.get(
             "admins/100", headers={"Authorization": f"Bearer {self.token}"}
@@ -103,68 +93,65 @@ class TestAcceptance:
         assert response.status_code == status.HTTP_404_NOT_FOUND, response.text
         assert data["detail"] == "The admin does not exists"
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_06_admin_already_exists_should_raise_http_error_code_409(self):
         response = self.register_admin("admins/")
         data = response.json()
         assert response.status_code == status.HTTP_409_CONFLICT, response.text
         assert data["detail"] == "Admin already exists"
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_07_when_loggin_with_bad_credentials_should_get_401_error(self):
 
         response = self.client.post(
             "admins/login",
-            json={"user_name": "alevillores", "password": "mal_password"},
+            json={"email": "no_existe", "password": "mal_password"},
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
         data = response.json()
         assert data["detail"] == "The username/password is incorrect"
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_08_get_admins_should_have_authorazation(self):
-        token = jwt_handler.create_access_token(1, True)
         response = self.client.get(
-            "admins/", headers={"Authorization": f"Baerer {token}"}
+            "admins/", headers={"Authorization": f"Bearer {self.token}"}
         )
         assert response.status_code == status.HTTP_200_OK
 
-    @pytest.mark.skip("FIX!!!!!!")
     def test_09_as_logged_user_i_can_se_my_profile(self):
         login_response = self.client.post(
-            "admins/login", json={"user_name": "alevillores", "password": "alejo2"}
+            "admins/login",
+            json={"email": "alevillores@hotmail.com", "password": "alejo2"},
         )
         assert login_response.status_code == status.HTTP_200_OK, login_response.text
 
         token = login_response.json()["token"]
         response = self.client.get(
-            "admins/my/profile", headers={"Authorization": f"Baerer {token}"}
+            "admins/my/profile", headers={"Authorization": f"Bearer {token}"}
         )
         assert response.status_code == status.HTTP_200_OK, response.text
         data = response.json()
-        expected = {
-            "id": 1,
-            "name": "Alejo",
-            "last_name": "Villores",
-            "user_name": "alevillores",
-        }
+        assert data["id"] == 1
+        assert data["name"] == "Alejo"
+        assert data["last_name"] == "Villores"
+        assert data["email"] == "alevillores@hotmail.com"
 
-        assert data["id"], expected["id"]
-        assert data["name"], expected["name"]
-        assert data["last_name"], expected["last_name"]
-        assert data["user_name"], expected["user_name"]
-
-    @pytest.mark.skip("FIX!!!!!!")
     def test_10_user_with_no_token_cant_register(self):
         response = self.client.post(
             "admins/",
             json={
                 "name": "Test",
-                "last_name": "Villores",
-                "user_name": "no_admin",
-                "password": "no_user",
+                "last_name": "test",
+                "email": "testin@hotmail.com",
+                "password": "tes",
             },
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
         data = response.json()
         assert data["detail"] == "Unauthorized"
+
+    def test_11_should_five_admins_registered(self):
+        self.create_people(4)
+        response = self.client.get(
+            "admins/", headers={"Authorization": f"Bearer {self.token}"}
+        )
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert len(data) == 5
