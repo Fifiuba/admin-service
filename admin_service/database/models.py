@@ -14,7 +14,7 @@ class Admin(Base):
     last_name = Column("last_name", String(255), nullable=False)
     email = Column("email", String(255), nullable=False)
     password = Column("password", String(255), nullable=False)
-    token_id = Column("token_id",String(255),nullable=True)
+    token_id = Column("token_id", String(255), nullable=True)
 
 
 Base.metadata.drop_all(engine)

@@ -25,7 +25,7 @@ def admin_exists(email: str, db: Session):
     return True if q is not None else False
 
 
-def create_admin(admin: schemas.AdminRequest,token_id: Union[str,None] ,db: Session):
+def create_admin(admin: schemas.AdminRequest, token_id: Union[str, None], db: Session):
     if admin_exists(admin.email, db):
         raise exceptions.AdminAlreadyExists
 
@@ -34,7 +34,7 @@ def create_admin(admin: schemas.AdminRequest,token_id: Union[str,None] ,db: Sess
         last_name=admin.last_name,
         email=admin.email,
         password=admin.password,
-        token_id=token_id
+        token_id=token_id,
     )
     db.add(db_admin)
     db.commit()

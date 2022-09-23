@@ -26,9 +26,9 @@ def auth(email: str, uid: str, db: Session):
     return admin
 
 
-def create_admin(admin: schemas.AdminRequest,uid:str, db: Session):
+def create_admin(admin: schemas.AdminRequest, uid: str, db: Session):
     admin.password = password_hasher.hash_password(admin.password)
-    admin_response = crud.create_admin(admin,uid, db)
+    admin_response = crud.create_admin(admin, uid, db)
     return admin_response
 
 

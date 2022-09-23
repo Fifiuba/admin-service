@@ -14,7 +14,7 @@ class AdminResponse(BaseModel):
     last_name: str
     email: str
     password: str
-    token_id:str
+    token_id: str
 
     class Config:
         orm_mode = True
