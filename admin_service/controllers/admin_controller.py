@@ -42,7 +42,7 @@ async def get_admin(id: int, req: Request, db: Session = Depends(database.get_db
 
 
 @admin_route.get(
-    "/my/profile",
+    "/me/",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_200_OK,
 )
@@ -99,3 +99,21 @@ async def login_admin(
         raise HTTPException(**error.__dict__)
 
     return token_data
+
+
+@admin_route.patch(
+    "/me/", response_model=schemas.AdminResponse, status_code=status.HTTP_202_ACCEPTED
+)
+async def edit_profile(
+    rq: Request,
+    admin: schemas.AdminUpdateRequest,
+    db: Session = Depends(database.get_db),
+):
+    try:
+        token = authorization.is_auth(rq.headers)
+        admin_id = jwt_handler.decode_token(token)["id"]
+        admin_updated = admin_repository.update_admin(admin_id, admin, db)
+    except (exceptions.AdminUnauthorized, exceptions.AdminNotFoundError) as error:
+        raise HTTPException(**error.__dict__)
+    else:
+        return admin_updated

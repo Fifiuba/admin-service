@@ -124,7 +124,7 @@ class TestAcceptance:
 
         token = login_response.json()["token"]
         response = self.client.get(
-            "admins/my/profile", headers={"Authorization": f"Bearer {token}"}
+            "admins/me/", headers={"Authorization": f"Bearer {token}"}
         )
         assert response.status_code == status.HTTP_200_OK, response.text
         data = response.json()
@@ -155,3 +155,20 @@ class TestAcceptance:
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
         assert len(data) == 5
+
+    def test_12_user_named_alejo_change_last_name(self):
+        me = self.client.get(
+            "admins/1", headers={"Authorization": f"Bearer {self.token}"}
+        )
+        assert me.status_code == status.HTTP_200_OK, me.text
+        data = me.json()
+        assert data["last_name"] == "Villores"
+
+        response = self.client.patch(
+            "admins/me/",
+            json={"name": data.get("name"), "last_name": "Villares"},
+            headers={"Authorization": f"Bearer {self.token}"},
+        )
+        assert response.status_code == status.HTTP_202_ACCEPTED, response.text
+        patched = response.json()
+        assert patched["last_name"] == "Villares"

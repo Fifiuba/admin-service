@@ -34,3 +34,8 @@ def create_admin(admin: schemas.AdminRequest, uid: str, db: Session):
 
 def find_by_username(user_name: str, db: Session):
     return crud.get_admins_by_user_name(user_name, db)
+
+
+def update_admin(admin_id: int, admin: schemas.AdminUpdateRequest, db: Session):
+    admin_updated = crud.update(admin_id, admin, db)
+    return admin_updated

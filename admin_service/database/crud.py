@@ -40,3 +40,18 @@ def create_admin(admin: schemas.AdminRequest, token_id: Union[str, None], db: Se
     db.commit()
     db.refresh(db_admin)
     return db_admin
+
+
+def update(admin_id, admin: schemas.AdminUpdateRequest, db: Session):
+    admin_found = get_admin(admin_id, db)
+
+    if admin_found is None:
+        raise exceptions.AdminNotFoundError
+
+    setattr(admin_found, "name", admin.name)
+    setattr(admin_found, "last_name", admin.last_name)
+
+    db.commit()
+    db.refresh(admin_found)
+
+    return admin_found

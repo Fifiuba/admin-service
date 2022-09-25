@@ -8,6 +8,11 @@ class AdminRequest(BaseModel):
     password: str
 
 
+class AdminUpdateRequest(BaseModel):
+    name: str
+    last_name: str
+
+
 class AdminResponse(BaseModel):
     id: int
     name: str
