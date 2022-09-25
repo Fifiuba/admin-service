@@ -39,3 +39,10 @@ def find_by_username(user_name: str, db: Session):
 def update_admin(admin_id: int, admin: schemas.AdminUpdateRequest, db: Session):
     admin_updated = crud.update(admin_id, admin, db)
     return admin_updated
+
+
+def delete_admin(admin_id, firebase, db: Session):
+    admin = crud.get_admin(admin_id, db)
+    firebase.delete_admin(admin.token_id)
+    id = crud.delete_admin(admin.id, db)
+    return id

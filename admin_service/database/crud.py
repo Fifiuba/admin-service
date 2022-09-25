@@ -55,3 +55,11 @@ def update(admin_id, admin: schemas.AdminUpdateRequest, db: Session):
     db.refresh(admin_found)
 
     return admin_found
+
+
+def delete_admin(admin_id, db: Session):
+    admin = get_admin(admin_id, db)
+    id = admin.id
+    db.delete(admin)
+    db.commit()
+    return id

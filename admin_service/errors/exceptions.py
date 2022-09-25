@@ -24,3 +24,9 @@ class AdminNotFoundError(AdminInfoException):
     def __init__(self):
         self.status_code = 404
         self.detail = "The admin does not exists"
+
+
+class AdminNotDeleted(AdminInfoException):
+    def __init__(self):
+        self.status_code = 500
+        self.detail = "Admin not deleted because internal problems"

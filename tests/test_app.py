@@ -172,3 +172,11 @@ class TestAcceptance:
         assert response.status_code == status.HTTP_202_ACCEPTED, response.text
         patched = response.json()
         assert patched["last_name"] == "Villares"
+
+    def test_13_delete_admin_from_db(self):
+        id_eliminated = self.client.delete(
+            "/admins/1", headers={"Authorization": f"Bearer {self.token}"}
+        )
+        assert id_eliminated.status_code == status.HTTP_202_ACCEPTED
+        deleted = id_eliminated.json()
+        assert deleted["id"] == 1

@@ -31,6 +31,13 @@ def create_admin(email: str, password: str):
         return user_record.uid
 
 
+def delete_admin(uid: str):
+    try:
+        auth.delete_user(uid, app=default_app)
+    except (ValueError, fb_exceptions.FirebaseError):
+        raise exceptions.AdminNotDeleted
+
+
 # def valid_admin(admin):
 #     try:
 #         user_record = auth.get_user(admin.password, default_app)

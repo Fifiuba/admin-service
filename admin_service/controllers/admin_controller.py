@@ -117,3 +117,23 @@ async def edit_profile(
         raise HTTPException(**error.__dict__)
     else:
         return admin_updated
+
+
+@admin_route.delete(
+    "/{id}", response_model=schemas.DeleteResponse, status_code=status.HTTP_202_ACCEPTED
+)
+async def delete_admin(
+    id: int,
+    req: Request,
+    firebase=Depends(firebase.get_fb),
+    db: Session = Depends(database.get_db),
+):
+    try:
+        authorization.is_auth(req.headers)
+        id = admin_repository.delete_admin(id, firebase, db)
+    except (exceptions.AdminUnauthorized, exceptions.AdminNotFoundError) as error:
+        raise HTTPException(**error.__dict__)
+    except exceptions.AdminNotDeleted as error:
+        raise HTTPException(**error.__dict__)
+    else:
+        return schemas.DeleteResponse(id=id)

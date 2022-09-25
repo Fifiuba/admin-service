@@ -32,3 +32,7 @@ class LoginAdminRequest(BaseModel):
 
 class TokenResponse(BaseModel):
     token: str
+
+
+class DeleteResponse(BaseModel):
+    id: int
