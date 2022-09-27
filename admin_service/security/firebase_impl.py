@@ -7,10 +7,13 @@ class Firebase:
         self.auth = auth
         self.app = app
 
-    def create_admin(self, email: str, password: str):
+    def create_admin(self, admin):
         try:
             user_record = self.auth.create_user(
-                email=email, password=password, app=self.app
+                email=admin.email,
+                password=admin.password,
+                display_name=admin.last_name,
+                app=self.app,
             )
         except (ValueError, fb_exceptions.FirebaseError):
             raise exceptions.AdminBadCredentials

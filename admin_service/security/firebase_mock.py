@@ -1,7 +1,7 @@
 class FirebaseMock:
     token = "asdasdasdslwlewed1213123"
 
-    def create_admin(self, email, password, app="def"):
+    def create_admin(self, admin, app="def"):
         return self.token
 
     def valid_admin(self, admin):
