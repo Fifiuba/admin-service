@@ -33,7 +33,6 @@ def create_admin(admin: schemas.AdminRequest, token_id: Union[str, None], db: Se
         name=admin.name,
         last_name=admin.last_name,
         email=admin.email,
-        password=admin.password,
         token_id=token_id,
     )
     db.add(db_admin)

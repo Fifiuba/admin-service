@@ -9,10 +9,8 @@ if "RUN_ENV" in os.environ.keys() and os.environ["RUN_ENV"] == "test":
     default_app = "def"
 else:
     from admin_service.security.firebase_impl import Firebase
-    from admin_service.errors import exceptions
     import firebase_admin
     from firebase_admin import credentials, auth
-
 
     cred = credentials.Certificate("admin_service/security/firebase_keys.json")
     default_app = firebase_admin.initialize_app(cred, name="test")
@@ -27,13 +25,3 @@ def get_fb():
         yield firebase
     finally:
         firebase
-
-
-# def valid_admin(admin):
-#     try:
-#         user_record = auth.get_user(admin.password, default_app)
-#     except (ValueError, auth.UserNotFoundError, fb_exceptions.FirebaseError):
-#         raise exceptions.AdminBadCredentials
-#     else:
-#         return user_record.email, user_record.uid
-

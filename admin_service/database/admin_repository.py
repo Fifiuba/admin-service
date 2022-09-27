@@ -1,6 +1,5 @@
 from . import schemas, crud
 from admin_service.errors import exceptions
-from admin_service.security import password_hasher
 from sqlalchemy.orm import Session
 
 
@@ -27,7 +26,6 @@ def auth(email: str, uid: str, db: Session):
 
 
 def create_admin(admin: schemas.AdminRequest, uid: str, db: Session):
-    admin.password = password_hasher.hash_password(admin.password)
     admin_response = crud.create_admin(admin, uid, db)
     return admin_response
 

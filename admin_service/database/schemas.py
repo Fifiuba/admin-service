@@ -18,7 +18,6 @@ class AdminResponse(BaseModel):
     name: str
     last_name: str
     email: str
-    password: str
     token_id: str
 
     class Config:
@@ -26,8 +25,7 @@ class AdminResponse(BaseModel):
 
 
 class LoginAdminRequest(BaseModel):
-    email: str
-    password: str
+    token: str
 
 
 class TokenResponse(BaseModel):

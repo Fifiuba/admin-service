@@ -5,8 +5,10 @@ class FirebaseMock:
         return self.token
 
     def valid_admin(self, admin):
-        email = admin.email
-        return email, self.token
+        if admin.token == "token":
+            return "bad@credentials", self.token
+
+        return "alevillores@hotmail.com", self.token
 
     def delete_admin(self, uid):
         pass

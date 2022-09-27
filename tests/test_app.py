@@ -1,7 +1,7 @@
 from fastapi import status
 from fastapi.testclient import TestClient
 from admin_service.app import app
-from admin_service.security import jwt_handler, password_hasher
+from admin_service.security import jwt_handler
 from admin_service.database import schemas, database, crud
 
 
@@ -45,19 +45,12 @@ class TestAcceptance:
         data = response.json()
         assert data == []
 
-    def test_02_when_creating_new_admin_it_should_have_encripted_pass(self):
-        response = self.register_admin("admins/")
-        assert response.status_code == status.HTTP_201_CREATED, response.text
-        data = response.json()
-        assert password_hasher.verify_password("alejo2", data["password"]) is True
-
     def test_03_when_loggin_in_admin_it_should_return_token(self):
         self.register_admin("admins/")
         login_response = self.client.post(
             "admins/login",
             json={
-                "email": "alevillores@hotmail.com",
-                "password": "kEqofVcDh1bw4lzQkdFSXr4VvLu1",
+                "token": "kEqofVcDh1bw4lzQkdFSXr4VvLu1",
             },
         )
         assert login_response.status_code == status.HTTP_200_OK, login_response.text
@@ -83,7 +76,6 @@ class TestAcceptance:
         assert data["name"] == "Alejo"
         assert data["last_name"] == "Villores"
         assert data["email"] == "alevillores@hotmail.com"
-        assert password_hasher.verify_password("alejo2", data["password"]) is True
 
     def test_05_admin_not_found_should_raise_http_error_code_404(self):
         response = self.client.get(
@@ -103,7 +95,7 @@ class TestAcceptance:
 
         response = self.client.post(
             "admins/login",
-            json={"email": "no_existe", "password": "mal_password"},
+            json={"token": "token"},
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
         data = response.json()
@@ -118,7 +110,7 @@ class TestAcceptance:
     def test_09_as_logged_user_i_can_se_my_profile(self):
         login_response = self.client.post(
             "admins/login",
-            json={"email": "alevillores@hotmail.com", "password": "alejo2"},
+            json={"token": "toke"},
         )
         assert login_response.status_code == status.HTTP_200_OK, login_response.text
 
