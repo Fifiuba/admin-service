@@ -10,7 +10,7 @@ class AdminAlreadyExists(AdminInfoException):
 
 class AdminBadCredentials(AdminInfoException):
     def __init__(self):
-        self.status_code = 401
+        self.status_code = 406
         self.detail = "The username/password is incorrect"
 
 
