@@ -97,7 +97,7 @@ class TestAcceptance:
             "admins/login",
             json={"token": "token"},
         )
-        assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.text
+        assert response.status_code == status.HTTP_406_NOT_ACCEPTABLE, response.text
         data = response.json()
         assert data["detail"] == "The username/password is incorrect"
 

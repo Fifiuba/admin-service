@@ -82,7 +82,7 @@ async def create_admin(
 
 @admin_route.post(
     "/login",
-    response_model=schemas.TokenResponse,
+    response_model=schemas.LoginAdminResponse,
     status_code=status.HTTP_200_OK,
 )
 async def login_admin(
@@ -94,7 +94,9 @@ async def login_admin(
         email, uid = firebase.valid_admin(admin)
         admin_response = admin_repository.auth(email, uid, db)
         token = jwt_handler.create_access_token(admin_response.id, True)
-        token_data = schemas.TokenResponse(token=token)
+        token_data = schemas.LoginAdminResponse(
+            name=admin_response.name, last_name=admin_response.last_name, token=token
+        )
     except exceptions.AdminBadCredentials as error:
         raise HTTPException(**error.__dict__)
 

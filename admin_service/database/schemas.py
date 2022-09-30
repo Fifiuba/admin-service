@@ -28,7 +28,9 @@ class LoginAdminRequest(BaseModel):
     token: str
 
 
-class TokenResponse(BaseModel):
+class LoginAdminResponse(BaseModel):
+    name: str
+    last_name: str
     token: str
 
 
