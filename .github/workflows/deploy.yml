@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: CDNievas/heroku-action@v1.0 # This is the action
         with:
-          heroku_email: "example@email.com"
+          heroku_email: "avillores@fi.uba.ar"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "this-is-an-example"
+          heroku_app_name: "admin-service-taller"
