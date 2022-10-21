@@ -1,43 +1,13 @@
 from fastapi import status
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from admin_service.app import app
 from admin_service.security import jwt_handler
-from admin_service.database import schemas, database, crud, models
-from admin_service.security.firebase_mock import FirebaseMock
-from admin_service.security.firebase import get_fb
+from admin_service.database import schemas, crud
+from tests import conftest
 
 
-engine = create_engine(
-    "sqlite:///./test.db", echo=False, connect_args={"check_same_thread": False}
-)
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-models.Base.metadata.drop_all(engine)
-models.Base.metadata.create_all(bind=engine)
-
-
-def override_get_db():
-    try:
-        db = TestingSessionLocal()
-        yield db
-    finally:
-        db.close()
-
-
-firebase = FirebaseMock()
-default_app = "def"
-
-
-def override_get_fb():
-    try:
-        yield firebase
-    finally:
-        firebase
-
-
-app.dependency_overrides[get_fb] = override_get_fb
-app.dependency_overrides[database.get_db] = override_get_db
+session = conftest.init_database(app)
+conftest.init_firebase(app)
 
 
 class TestAcceptance:
@@ -68,7 +38,7 @@ class TestAcceptance:
                     password="test",
                 )
             )
-        db = TestingSessionLocal()
+        db = session
         for admin in admins:
             crud.create_admin(admin, "token_id", db)
 
