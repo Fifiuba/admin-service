@@ -11,6 +11,7 @@ def init_firebase():
 
     # Initialize the default app
     default_app = firebase_admin.initialize_app(cred)
+    global firebase
     firebase = Firebase(auth, default_app)
 
 

@@ -24,4 +24,4 @@ COPY ./admin_service/ ./admin_service
 EXPOSE 8000
 
 # Corro comando para levantar el servidor
-CMD poetry run uvicorn admin_service.app:app --host 0.0.0.0
+CMD poetry run uvicorn admin_service.main:app --host 0.0.0.0

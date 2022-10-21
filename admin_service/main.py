@@ -1,5 +1,5 @@
 import uvicorn
-import app
+from admin_service.app import app
 from admin_service.security import firebase
 from admin_service.database import database
 

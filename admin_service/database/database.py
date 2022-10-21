@@ -12,6 +12,7 @@ load_dotenv()
 def init_database():
     DB_URL = os.getenv("DATABASE_URL")
     engine = create_engine(DB_URL, echo=True)
+    global SessionLocal
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     Base.metadata.drop_all(engine)
