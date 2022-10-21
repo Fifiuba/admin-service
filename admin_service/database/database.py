@@ -1,26 +1,21 @@
+# flake8: noqa
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
+from .models import Base
 
 load_dotenv()
 
 
-if "RUN_ENV" in os.environ.keys() and os.environ["RUN_ENV"] == "test":
-    # read from .env file, if DATABASE_URL does not exist
-    # then read from system env
-    engine = create_engine(
-        "sqlite:///./test.db", echo=False, connect_args={"check_same_thread": False}
-    )
-else:
+def init_database():
     DB_URL = os.getenv("DATABASE_URL")
     engine = create_engine(DB_URL, echo=True)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-
-# an Engine, which the Session will use for connection
-# resources
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(engine)
 
 
 def get_local_session():
