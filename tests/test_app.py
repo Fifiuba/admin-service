@@ -3,6 +3,22 @@ from fastapi.testclient import TestClient
 from admin_service.app import app
 from admin_service.security import jwt_handler
 from admin_service.database import schemas, database, crud
+from admin_service.security.firebase_mock import FirebaseMock
+from admin_service.security.firebase import get_fb
+
+
+firebase = FirebaseMock()
+default_app = "def"
+
+
+def override_get_fb():
+    try:
+        yield firebase
+    finally:
+        firebase
+
+
+app.dependency_overrides[get_fb] = override_get_fb
 
 
 class TestAcceptance:
