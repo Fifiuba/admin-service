@@ -61,6 +61,11 @@ El proposito del servicio de adminsitradores es atender los diferentes request n
 
 Haciendo uso de la autenticacion de Google Firebase para su desarrollo
 
+Credenciales 
+
+email: admin@fiuba.com
+password: adminfiuba
+
 ### Detalles de implementación
 ---
 Diagrama de clases general
