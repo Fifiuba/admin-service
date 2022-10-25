@@ -1,12 +1,13 @@
 FROM python:3
 
+# Corro los comandos para instalar poetry
+RUN pip3 install poetry
+
 # Declaro mi directorio de trabajo
 WORKDIR /usr/src/app
 
 ENV PYTHONPATH=${PYTHONPATH}:${PWD} 
 
-# Corro los comandos para instalar poetry
-RUN pip3 install poetry
 
 # Copio los archivos de poetry a /app
 COPY  pyproject.toml ./
