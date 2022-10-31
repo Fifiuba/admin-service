@@ -13,6 +13,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - postgres-okteto:/var/lib/postgresql/data
     
     
   # Servicio de backend
@@ -25,3 +26,5 @@ services:
     ports:
       - 8000:8000
 
+volumes:
+  postgres-okteto:
