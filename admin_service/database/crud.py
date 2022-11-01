@@ -2,7 +2,16 @@ from sqlalchemy.orm import Session
 from typing import Union
 from . import models, schemas
 from admin_service.errors import exceptions
+import logging
 
+logging.basicConfig(
+    filename='test.log',
+    filemode='a',
+    level=logging.DEBUG,
+    format = '%(asctime)s - %(levelname)s: %(message)s',
+    force=True,
+)
+logger = logging.getLogger()
 
 def get_admin(admin_id: int, db: Session):
     return db.query(models.Admin).filter(models.Admin.id == admin_id).first()
@@ -27,6 +36,7 @@ def admin_exists(email: str, db: Session):
 
 def create_admin(admin: schemas.AdminRequest, token_id: Union[str, None], db: Session):
     if admin_exists(admin.email, db):
+        logger.warning("Admin %s already exists", admin.email)
         raise exceptions.AdminAlreadyExists
 
     db_admin = models.Admin(
@@ -38,6 +48,8 @@ def create_admin(admin: schemas.AdminRequest, token_id: Union[str, None], db: Se
     db.add(db_admin)
     db.commit()
     db.refresh(db_admin)
+    logger.debug("Create admin %d with email %s", db_admin.id, db_admin.email)
+    logger.info("Admin created")
     return db_admin
 
 
@@ -45,6 +57,7 @@ def update(admin_id, admin: schemas.AdminUpdateRequest, db: Session):
     admin_found = get_admin(admin_id, db)
 
     if admin_found is None:
+        logger.warning("Admin %d already exists", admin_id)
         raise exceptions.AdminNotFoundError
 
     setattr(admin_found, "name", admin.name)
@@ -52,7 +65,8 @@ def update(admin_id, admin: schemas.AdminUpdateRequest, db: Session):
 
     db.commit()
     db.refresh(admin_found)
-
+    logger.debug("Update admin %d information", admin_id)
+    logger.info("Admin updated")
     return admin_found
 
 
@@ -61,4 +75,6 @@ def delete_admin(admin_id, db: Session):
     id = admin.id
     db.delete(admin)
     db.commit()
+    logger.debug("Delete admin %d", admin_id)
+    logger.info("Admin deleted")
     return id

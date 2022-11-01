@@ -1,0 +1,30 @@
+2022-11-01 09:23:00,442 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,463 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,551 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-01 09:23:00,551 - INFO: Admin created
+2022-11-01 09:23:00,555 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,565 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,579 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,597 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,618 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-01 09:23:00,634 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,657 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,670 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,697 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,712 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,815 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-01 09:23:00,815 - INFO: Admin created
+2022-11-01 09:23:00,905 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-01 09:23:00,905 - INFO: Admin created
+2022-11-01 09:23:00,992 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-01 09:23:00,992 - INFO: Admin created
+2022-11-01 09:23:01,081 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-01 09:23:01,081 - INFO: Admin created
+2022-11-01 09:23:01,084 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,094 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,105 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,203 - DEBUG: Update admin 1 information
+2022-11-01 09:23:01,203 - INFO: Admin updated
+2022-11-01 09:23:01,210 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,301 - DEBUG: Delete admin 1
+2022-11-01 09:23:01,301 - INFO: Admin deleted
