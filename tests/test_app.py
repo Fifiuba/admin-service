@@ -11,7 +11,7 @@ conftest.init_firebase(app)
 
 
 class TestAcceptance:
-    token = jwt_handler.create_access_token(1, True)
+    token = jwt_handler.create_access_token(1, "admin")
     client = TestClient(app)
 
     def register_admin(self, endpoint):
@@ -63,7 +63,7 @@ class TestAcceptance:
         actual = jwt_handler.decode_token(data["token"])
         expected = {
             "id": 1,
-            "admin": True,
+            "admin": "admin",
         }
 
         assert actual["id"] == expected["id"]

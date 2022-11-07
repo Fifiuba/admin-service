@@ -89,7 +89,7 @@ async def login_admin(
     try:
         email, uid = firebase.valid_admin(admin)
         admin_response = admin_repository.auth(email, uid, db)
-        token = jwt_handler.create_access_token(admin_response.id, True)
+        token = jwt_handler.create_access_token(admin_response.id, "admin")
         token_data = schemas.LoginAdminResponse(
             name=admin_response.name, last_name=admin_response.last_name, token=token
         )

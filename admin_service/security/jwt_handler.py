@@ -27,7 +27,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 2
 """
 
 
-def create_access_token(admin_id: int, admin: bool) -> str:
+def create_access_token(admin_id: int, admin: str) -> str:
     # expires_delta: datetime = datetime.utcnow() + timedelta(
     #    minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
