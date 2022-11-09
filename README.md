@@ -24,7 +24,7 @@ Poetry (version 1.2.0)
 Pasos para levantar el servidor local una vez clonado el repo
 ```bash
 poetry install
-poetry run uvicorn admin_service.app:app --reload
+poetry run uvicorn admin_service.main:app --reload
 ```
 
 Pasos para correr los test
