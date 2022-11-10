@@ -17,7 +17,7 @@ def init_database():
 
     Base.metadata.create_all(engine)
 
-    
+
 def get_local_session():
     return SessionLocal()
 
@@ -29,6 +29,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 def insert_super_admin(db_admin):
     db = get_local_session()

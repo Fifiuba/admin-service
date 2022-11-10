@@ -14,4 +14,3 @@ app.add_middleware(
 )
 
 app.include_router(admin_controller.admin_route, prefix="/admins", tags=["Admins"])
-

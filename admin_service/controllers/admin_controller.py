@@ -46,8 +46,7 @@ async def get_admin(id: int, req: Request, db: Session = Depends(database.get_db
 )
 async def me(req: Request, db: Session = Depends(database.get_db)):
     try:
-        token = authorization.is_auth(req.headers)
-        token_id = jwt_handler.decode_token(token)["id"]
+        token_id = authorization.is_auth(req.headers)
         admin = admin_repository.get_admin_by_id(token_id, db)
         return admin
     except exceptions.AdminUnauthorized as error:
@@ -107,8 +106,7 @@ async def edit_profile(
     db: Session = Depends(database.get_db),
 ):
     try:
-        token = authorization.is_auth(rq.headers)
-        admin_id = jwt_handler.decode_token(token)["id"]
+        admin_id = authorization.is_auth(rq.headers)
         admin_updated = admin_repository.update_admin(admin_id, admin, db)
         return admin_updated
     except (exceptions.AdminUnauthorized, exceptions.AdminNotFoundError) as error:

@@ -5,13 +5,14 @@ from admin_service.errors import exceptions
 import logging
 
 logging.basicConfig(
-    filename='test.log',
-    filemode='a',
+    filename="test.log",
+    filemode="a",
     level=logging.DEBUG,
-    format = '%(asctime)s - %(levelname)s: %(message)s',
+    format="%(asctime)s - %(levelname)s: %(message)s",
     force=True,
 )
 logger = logging.getLogger()
+
 
 def get_admin(admin_id: int, db: Session):
     return db.query(models.Admin).filter(models.Admin.id == admin_id).first()

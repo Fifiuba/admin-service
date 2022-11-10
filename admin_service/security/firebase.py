@@ -1,6 +1,4 @@
 # flake8: noqa
-
-
 def init_firebase():
     from admin_service.security.firebase_impl import Firebase
     import firebase_admin
