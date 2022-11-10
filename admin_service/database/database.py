@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
-from .models import Base
+from .models import Base, Admin
 
 load_dotenv()
 
@@ -15,12 +15,9 @@ def init_database():
     global SessionLocal
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
     
-
-
 def get_local_session():
     return SessionLocal()
 
@@ -35,6 +32,9 @@ def get_db():
 
 def insert_super_admin(db_admin):
     db = get_local_session()
-    db.add(db_admin)
-    db.commit()
-    db.refresh(db_admin)
+    admin = db.query(Admin).filter(Admin.name == db_admin.name).first()
+    if not admin:
+        db = get_local_session()
+        db.add(db_admin)
+        db.commit()
+        db.refresh(db_admin)
