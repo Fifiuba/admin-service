@@ -31,7 +31,7 @@ def create_access_token(admin_id: int, user: str) -> str:
     # expires_delta: datetime = datetime.utcnow() + timedelta(
     #    minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
-    to_encode = {"id": admin_id, "user": user}
+    to_encode = {"id": admin_id, "rol": user}
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, ALGORITHM)
     return encoded_jwt
 

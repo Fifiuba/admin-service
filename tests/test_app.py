@@ -63,11 +63,11 @@ class TestAcceptance:
         actual = jwt_handler.decode_token(data["token"])
         expected = {
             "id": 1,
-            "user": "admin",
+            "rol": "admin",
         }
 
         assert actual["id"] == expected["id"]
-        assert actual["user"] == expected["user"]
+        assert actual["rol"] == expected["rol"]
 
     def test_04_should_be_able_to_see_profile_of_one_admin(self):
         response = self.client.get(
