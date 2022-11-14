@@ -54,7 +54,7 @@ async def me(req: Request, db: Session = Depends(database.get_db)):
 
 
 @admin_route.post(
-    "/",
+    "",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_201_CREATED,
 )

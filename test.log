@@ -513,3 +513,85 @@ WHERE administrators.name = %(name_1)s
 2022-11-10 10:00:11,272 - DEBUG: Using proactor: IocpProactor
 2022-11-10 10:00:11,289 - DEBUG: Delete admin 1
 2022-11-10 10:00:11,289 - INFO: Admin deleted
+2022-11-14 15:20:04,158 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,198 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,209 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,540 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,576 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,591 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,610 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,626 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,638 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,679 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,738 - DEBUG: Create admin 1 with email 0@gmail.com
+2022-11-14 15:20:04,738 - INFO: Admin created
+2022-11-14 15:20:04,766 - DEBUG: Create admin 2 with email 1@gmail.com
+2022-11-14 15:20:04,766 - INFO: Admin created
+2022-11-14 15:20:04,795 - DEBUG: Create admin 3 with email 2@gmail.com
+2022-11-14 15:20:04,795 - INFO: Admin created
+2022-11-14 15:20:04,817 - DEBUG: Create admin 4 with email 3@gmail.com
+2022-11-14 15:20:04,817 - INFO: Admin created
+2022-11-14 15:20:04,817 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,858 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,898 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,948 - DEBUG: Delete admin 1
+2022-11-14 15:20:04,949 - INFO: Admin deleted
+2022-11-14 15:21:13,804 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,836 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,883 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-14 15:21:13,883 - INFO: Admin created
+2022-11-14 15:21:13,883 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,915 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,930 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,964 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,264 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,289 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,305 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,326 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,352 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,400 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-14 15:21:14,400 - INFO: Admin created
+2022-11-14 15:21:14,431 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-14 15:21:14,431 - INFO: Admin created
+2022-11-14 15:21:14,463 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-14 15:21:14,463 - INFO: Admin created
+2022-11-14 15:21:14,484 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-14 15:21:14,484 - INFO: Admin created
+2022-11-14 15:21:14,484 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,512 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,528 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,565 - DEBUG: Update admin 1 information
+2022-11-14 15:21:14,565 - INFO: Admin updated
+2022-11-14 15:21:14,575 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,614 - DEBUG: Delete admin 1
+2022-11-14 15:21:14,614 - INFO: Admin deleted
+2022-11-14 15:22:40,778 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,818 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,869 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-14 15:22:40,869 - INFO: Admin created
+2022-11-14 15:22:40,877 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,900 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,932 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,956 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,973 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-14 15:22:40,989 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,021 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,048 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,071 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,099 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,152 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-14 15:22:41,152 - INFO: Admin created
+2022-11-14 15:22:41,199 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-14 15:22:41,199 - INFO: Admin created
+2022-11-14 15:22:41,225 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-14 15:22:41,225 - INFO: Admin created
+2022-11-14 15:22:41,233 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-14 15:22:41,233 - INFO: Admin created
+2022-11-14 15:22:41,249 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,268 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,280 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,304 - DEBUG: Update admin 1 information
+2022-11-14 15:22:41,304 - INFO: Admin updated
+2022-11-14 15:22:41,315 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,336 - DEBUG: Delete admin 1
+2022-11-14 15:22:41,336 - INFO: Admin deleted

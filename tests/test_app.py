@@ -51,7 +51,7 @@ class TestAcceptance:
         assert data == []
 
     def test_03_when_loggin_in_admin_it_should_return_token(self):
-        self.register_admin("admins/")
+        self.register_admin("admins")
         login_response = self.client.post(
             "admins/login",
             json={
@@ -91,7 +91,7 @@ class TestAcceptance:
         assert data["detail"] == "The admin does not exists"
 
     def test_06_admin_already_exists_should_raise_http_error_code_409(self):
-        response = self.register_admin("admins/")
+        response = self.register_admin("admins")
         data = response.json()
         assert response.status_code == status.HTTP_409_CONFLICT, response.text
         assert data["detail"] == "Admin already exists"
@@ -132,7 +132,7 @@ class TestAcceptance:
 
     def test_10_user_with_no_token_cant_register(self):
         response = self.client.post(
-            "admins/",
+            "admins",
             json={
                 "name": "Test",
                 "last_name": "test",
