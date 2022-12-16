@@ -1,5 +1,6 @@
 [![GitHub Workflow Status](https://github.com/Fifiuba/admin-service/actions/workflows/test_action.yml/badge.svg?event=push)](https://github.com/Fifiuba/admin-service/commits/main)
-[![codecov](https://codecov.io/gh/Fifiuba/admin-service/branch/main/graph/badge.svg?token=WQLIP37828)](https://app.codecov.io/gh/Fifiuba/admin-service/tree/main)\
+[![codecov](https://codecov.io/gh/Fifiuba/admin-service/branch/main/graph/badge.svg?token=RQXZSBLB86)](https://codecov.io/gh/Fifiuba/admin-service)
+
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://backend-alejovillores.cloud.okteto.net/)
 
 ## Indice de informacion
