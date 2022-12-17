@@ -1,39 +1,41 @@
 [![GitHub Workflow Status](https://github.com/Fifiuba/admin-service/actions/workflows/test_action.yml/badge.svg?event=push)](https://github.com/Fifiuba/admin-service/commits/main)
 [![codecov](https://codecov.io/gh/Fifiuba/admin-service/branch/main/graph/badge.svg?token=RQXZSBLB86)](https://codecov.io/gh/Fifiuba/admin-service)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/Fifiuba/admin-service/blob/develop/LICENSE)
 
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://backend-alejovillores.cloud.okteto.net/)
 
-## Indice de informacion
-1. **Instalacion del entorno**
-2. **Propósito del servicio de administradores**
-3. **Datalles de implementación**
+## Information
+1. **Instalation**
+2. **Service's purpose**
+3. **Implementation Details**
 
 
-### Instalación del entorno
+### Instalation
 
-Version de python
+Python's version
 ```shell
 python --version
 Python 3.8.5
  ```
-Version de poetry
+
+[Poetry](https://python-poetry.org/)'s version
 ```bash
 poetry --version
 Poetry (version 1.2.0)
  ```
 
-Pasos para levantar el servidor local una vez clonado el repo
+Start server locally
 ```bash
 poetry install
 poetry run uvicorn admin_service.main:app --reload
 ```
 
-Pasos para correr los test
+Test
 ```bash
 poetry run pytest
 ```
 
-Pasos para correr el formatter
+Linter
 ```bash
 poetry run black <carpeta>
 ```
@@ -43,36 +45,42 @@ Pasos para correr el linter
 poetry run flake8 <carpeta>
 ```
 
-Pasos para levantar el entorno Docker
+Start server using Docker
 ```bash
 docker-compose build --no-cache
 clear
 docker-compose up
 ```
 
-Pasos para bajar el entorno Docker
+Shut down server 
 ```bash
 docker-compose down -v
+
 ```
+#### SQL Database
 
-### Propósito del servicio de administradores
+* Postgres
+
+### Service's purpose*
 ---
 
-El proposito del servicio de adminsitradores es atender los diferentes request necesarios que poseen los administradores, este servicio otorga la capacidad de crear/leer/editar y eliminar diferentes administradores.
+CRUD admin services, responsable for managin admins. It uses [Google Firebase](https://firebase.google.com/?hl=es) for authentication
 
-Haciendo uso de la autenticacion de Google Firebase para su desarrollo
+ 
+_SUPER ADMIN_\
+**email**: admin@fiuba.com\
+**password**: adminfiuba
 
-Credenciales 
+|Name                | Email                |
+|--------------------|----------------------|
+| Alejo villores     | avillores@fi.uba.ar  |
 
-email: admin@fiuba.com
-password: adminfiuba
-
-### Detalles de implementación
+### Implementation Details
 ---
-Diagrama de clases general
+Class diagram
 
 ![uml](uml.png)
 
-Diagrama de secuencia de una creacion de administrador
+Secuence 
 
 ![](secuence.png)
