@@ -16,11 +16,10 @@ admin_route = APIRouter()
 async def get_admins(req: Request, db: Session = Depends(database.get_db)):
     try:
         authorization.is_auth(req.headers)
-    except exceptions.AdminUnauthorized as error:
-        raise HTTPException(**error.__dict__)
-    else:
         admins = admin_repository.get_admins(db)
         return admins
+    except exceptions.AdminUnauthorized as error:
+        raise HTTPException(**error.__dict__)
 
 
 @admin_route.get(
@@ -33,12 +32,11 @@ async def get_admin(id: int, req: Request, db: Session = Depends(database.get_db
     try:
         authorization.is_auth(req.headers)
         admin = admin_repository.get_admin_by_id(id, db)
+        return admin
     except exceptions.AdminNotFoundError as error:
         raise HTTPException(**error.__dict__)
     except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
-    else:
-        return admin
 
 
 @admin_route.get(
@@ -48,17 +46,15 @@ async def get_admin(id: int, req: Request, db: Session = Depends(database.get_db
 )
 async def me(req: Request, db: Session = Depends(database.get_db)):
     try:
-        token = authorization.is_auth(req.headers)
-    except exceptions.AdminUnauthorized as error:
-        raise HTTPException(**error.__dict__)
-    else:
-        token_id = jwt_handler.decode_token(token)["id"]
+        token_id = authorization.is_auth(req.headers)
         admin = admin_repository.get_admin_by_id(token_id, db)
         return admin
+    except exceptions.AdminUnauthorized as error:
+        raise HTTPException(**error.__dict__)
 
 
 @admin_route.post(
-    "/",
+    "",
     response_model=schemas.AdminResponse,
     status_code=status.HTTP_201_CREATED,
 )
@@ -72,12 +68,11 @@ async def create_admin(
         authorization.is_auth(req.headers)
         uid = firebase.create_admin(admin)
         admin_response = admin_repository.create_admin(admin, uid, db)
+        return admin_response
     except exceptions.AdminAlreadyExists as error:
         raise HTTPException(**error.__dict__)
     except exceptions.AdminUnauthorized as error:
         raise HTTPException(**error.__dict__)
-    else:
-        return admin_response
 
 
 @admin_route.post(
@@ -93,14 +88,13 @@ async def login_admin(
     try:
         email, uid = firebase.valid_admin(admin)
         admin_response = admin_repository.auth(email, uid, db)
-        token = jwt_handler.create_access_token(admin_response.id, True)
+        token = jwt_handler.create_access_token(admin_response.id, "admin")
         token_data = schemas.LoginAdminResponse(
             name=admin_response.name, last_name=admin_response.last_name, token=token
         )
+        return token_data
     except exceptions.AdminBadCredentials as error:
         raise HTTPException(**error.__dict__)
-
-    return token_data
 
 
 @admin_route.patch(
@@ -112,13 +106,11 @@ async def edit_profile(
     db: Session = Depends(database.get_db),
 ):
     try:
-        token = authorization.is_auth(rq.headers)
-        admin_id = jwt_handler.decode_token(token)["id"]
+        admin_id = authorization.is_auth(rq.headers)
         admin_updated = admin_repository.update_admin(admin_id, admin, db)
+        return admin_updated
     except (exceptions.AdminUnauthorized, exceptions.AdminNotFoundError) as error:
         raise HTTPException(**error.__dict__)
-    else:
-        return admin_updated
 
 
 @admin_route.delete(
@@ -133,9 +125,8 @@ async def delete_admin(
     try:
         authorization.is_auth(req.headers)
         id = admin_repository.delete_admin(id, firebase, db)
+        return schemas.DeleteResponse(id=id)
     except (exceptions.AdminUnauthorized, exceptions.AdminNotFoundError) as error:
         raise HTTPException(**error.__dict__)
     except exceptions.AdminNotDeleted as error:
         raise HTTPException(**error.__dict__)
-    else:
-        return schemas.DeleteResponse(id=id)

@@ -1,0 +1,647 @@
+2022-11-01 09:23:00,442 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,463 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,551 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-01 09:23:00,551 - INFO: Admin created
+2022-11-01 09:23:00,555 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,565 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,579 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,597 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,618 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-01 09:23:00,634 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,657 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,670 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,697 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,712 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:00,815 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-01 09:23:00,815 - INFO: Admin created
+2022-11-01 09:23:00,905 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-01 09:23:00,905 - INFO: Admin created
+2022-11-01 09:23:00,992 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-01 09:23:00,992 - INFO: Admin created
+2022-11-01 09:23:01,081 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-01 09:23:01,081 - INFO: Admin created
+2022-11-01 09:23:01,084 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,094 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,105 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,203 - DEBUG: Update admin 1 information
+2022-11-01 09:23:01,203 - INFO: Admin updated
+2022-11-01 09:23:01,210 - DEBUG: Using selector: EpollSelector
+2022-11-01 09:23:01,301 - DEBUG: Delete admin 1
+2022-11-01 09:23:01,301 - INFO: Admin deleted
+2022-11-09 06:47:27,742 - INFO: Started server process [12624]
+2022-11-09 06:47:27,742 - INFO: Waiting for application startup.
+2022-11-09 06:47:27,744 - INFO: Application startup complete.
+2022-11-09 06:53:50,386 - INFO: select pg_catalog.version()
+2022-11-09 06:53:50,386 - INFO: [raw sql] {}
+2022-11-09 06:53:50,392 - INFO: select current_schema()
+2022-11-09 06:53:50,392 - INFO: [raw sql] {}
+2022-11-09 06:53:50,396 - INFO: show standard_conforming_strings
+2022-11-09 06:53:50,396 - INFO: [raw sql] {}
+2022-11-09 06:53:50,396 - INFO: BEGIN (implicit)
+2022-11-09 06:53:50,399 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:53:50,400 - INFO: [generated in 0.00047s] {'name': 'administrators'}
+2022-11-09 06:53:50,411 - INFO: COMMIT
+2022-11-09 06:53:50,413 - INFO: BEGIN (implicit)
+2022-11-09 06:53:50,417 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.id IS NULL 
+ LIMIT %(param_1)s
+2022-11-09 06:53:50,417 - INFO: [generated in 0.00051s] {'param_1': 1}
+2022-11-09 06:53:50,505 - INFO: BEGIN (implicit)
+2022-11-09 06:53:50,508 - INFO: INSERT INTO administrators (name, last_name, email, token_id) VALUES (%(name)s, %(last_name)s, %(email)s, %(token_id)s) RETURNING administrators.id
+2022-11-09 06:53:50,508 - INFO: [generated in 0.00045s] {'name': 'superadmin', 'last_name': 'fifuba', 'email': 'admin@fiuba.com', 'token_id': 'q7rL8PRAMPU8EvIrJNbLx7WVBQx1'}
+2022-11-09 06:53:50,520 - INFO: COMMIT
+2022-11-09 06:53:50,525 - INFO: BEGIN (implicit)
+2022-11-09 06:53:50,525 - INFO: SELECT administrators.id, administrators.name, administrators.last_name, administrators.email, administrators.token_id 
+FROM administrators 
+WHERE administrators.id = %(pk_1)s
+2022-11-09 06:53:50,525 - INFO: [generated in 0.00129s] {'pk_1': 2}
+2022-11-09 06:53:51,055 - INFO: Started server process [26612]
+2022-11-09 06:53:51,055 - INFO: Waiting for application startup.
+2022-11-09 06:53:51,055 - INFO: Application startup complete.
+2022-11-09 06:54:23,927 - INFO: Shutting down
+2022-11-09 06:54:24,040 - INFO: Waiting for application shutdown.
+2022-11-09 06:54:24,040 - INFO: Application shutdown complete.
+2022-11-09 06:54:24,042 - INFO: Finished server process [26612]
+2022-11-09 06:54:31,670 - INFO: select pg_catalog.version()
+2022-11-09 06:54:31,670 - INFO: [raw sql] {}
+2022-11-09 06:54:31,674 - INFO: select current_schema()
+2022-11-09 06:54:31,674 - INFO: [raw sql] {}
+2022-11-09 06:54:31,674 - INFO: show standard_conforming_strings
+2022-11-09 06:54:31,677 - INFO: [raw sql] {}
+2022-11-09 06:54:31,677 - INFO: BEGIN (implicit)
+2022-11-09 06:54:31,680 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:54:31,680 - INFO: [generated in 0.00090s] {'name': 'administrators'}
+2022-11-09 06:54:31,687 - INFO: COMMIT
+2022-11-09 06:54:31,689 - INFO: BEGIN (implicit)
+2022-11-09 06:54:31,693 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.id IS NULL 
+ LIMIT %(param_1)s
+2022-11-09 06:54:31,696 - INFO: [generated in 0.00189s] {'param_1': 1}
+2022-11-09 06:54:31,762 - INFO: BEGIN (implicit)
+2022-11-09 06:54:31,767 - INFO: INSERT INTO administrators (name, last_name, email, token_id) VALUES (%(name)s, %(last_name)s, %(email)s, %(token_id)s) RETURNING administrators.id
+2022-11-09 06:54:31,767 - INFO: [generated in 0.00100s] {'name': 'superadmin', 'last_name': 'fifuba', 'email': 'admin@fiuba.com', 'token_id': 'q7rL8PRAMPU8EvIrJNbLx7WVBQx1'}
+2022-11-09 06:54:31,775 - INFO: COMMIT
+2022-11-09 06:54:31,780 - INFO: BEGIN (implicit)
+2022-11-09 06:54:31,780 - INFO: SELECT administrators.id, administrators.name, administrators.last_name, administrators.email, administrators.token_id 
+FROM administrators 
+WHERE administrators.id = %(pk_1)s
+2022-11-09 06:54:31,780 - INFO: [generated in 0.00105s] {'pk_1': 3}
+2022-11-09 06:54:32,130 - INFO: Started server process [11408]
+2022-11-09 06:54:32,130 - INFO: Waiting for application startup.
+2022-11-09 06:54:32,130 - INFO: Application startup complete.
+2022-11-09 06:55:17,815 - INFO: select pg_catalog.version()
+2022-11-09 06:55:17,816 - INFO: [raw sql] {}
+2022-11-09 06:55:17,820 - INFO: select current_schema()
+2022-11-09 06:55:17,820 - INFO: [raw sql] {}
+2022-11-09 06:55:17,820 - INFO: show standard_conforming_strings
+2022-11-09 06:55:17,822 - INFO: [raw sql] {}
+2022-11-09 06:55:17,823 - INFO: BEGIN (implicit)
+2022-11-09 06:55:17,826 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:55:17,826 - INFO: [generated in 0.00085s] {'name': 'administrators'}
+2022-11-09 06:55:17,834 - INFO: COMMIT
+2022-11-09 06:55:17,835 - INFO: BEGIN (implicit)
+2022-11-09 06:55:17,842 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.id IS NULL 
+ LIMIT %(param_1)s
+2022-11-09 06:55:17,842 - INFO: [generated in 0.00103s] {'param_1': 1}
+2022-11-09 06:55:49,108 - INFO: select pg_catalog.version()
+2022-11-09 06:55:49,110 - INFO: [raw sql] {}
+2022-11-09 06:55:49,112 - INFO: select current_schema()
+2022-11-09 06:55:49,112 - INFO: [raw sql] {}
+2022-11-09 06:55:49,113 - INFO: show standard_conforming_strings
+2022-11-09 06:55:49,113 - INFO: [raw sql] {}
+2022-11-09 06:55:49,115 - INFO: BEGIN (implicit)
+2022-11-09 06:55:49,117 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:55:49,117 - INFO: [generated in 0.00112s] {'name': 'administrators'}
+2022-11-09 06:55:49,124 - INFO: COMMIT
+2022-11-09 06:55:49,129 - INFO: BEGIN (implicit)
+2022-11-09 06:55:49,133 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.id IS NULL 
+ LIMIT %(param_1)s
+2022-11-09 06:55:49,133 - INFO: [generated in 0.00134s] {'param_1': 1}
+2022-11-09 06:55:49,222 - INFO: BEGIN (implicit)
+2022-11-09 06:55:49,225 - INFO: INSERT INTO administrators (name, last_name, email, token_id) VALUES (%(name)s, %(last_name)s, %(email)s, %(token_id)s) RETURNING administrators.id
+2022-11-09 06:55:49,225 - INFO: [generated in 0.00086s] {'name': 'superadmin', 'last_name': 'fifuba', 'email': 'admin@fiuba.com', 'token_id': 'q7rL8PRAMPU8EvIrJNbLx7WVBQx1'}
+2022-11-09 06:55:49,233 - INFO: COMMIT
+2022-11-09 06:55:49,236 - INFO: BEGIN (implicit)
+2022-11-09 06:55:49,240 - INFO: SELECT administrators.id, administrators.name, administrators.last_name, administrators.email, administrators.token_id 
+FROM administrators 
+WHERE administrators.id = %(pk_1)s
+2022-11-09 06:55:49,241 - INFO: [generated in 0.00123s] {'pk_1': 4}
+2022-11-09 06:55:49,574 - INFO: Started server process [10364]
+2022-11-09 06:55:49,574 - INFO: Waiting for application startup.
+2022-11-09 06:55:49,576 - INFO: Application startup complete.
+2022-11-09 06:57:24,660 - INFO: select pg_catalog.version()
+2022-11-09 06:57:24,660 - INFO: [raw sql] {}
+2022-11-09 06:57:24,665 - INFO: select current_schema()
+2022-11-09 06:57:24,665 - INFO: [raw sql] {}
+2022-11-09 06:57:24,665 - INFO: show standard_conforming_strings
+2022-11-09 06:57:24,669 - INFO: [raw sql] {}
+2022-11-09 06:57:24,671 - INFO: BEGIN (implicit)
+2022-11-09 06:57:24,672 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:57:24,672 - INFO: [generated in 0.00095s] {'name': 'administrators'}
+2022-11-09 06:57:24,681 - INFO: COMMIT
+2022-11-09 06:57:24,685 - INFO: BEGIN (implicit)
+2022-11-09 06:57:24,690 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.id = %(id_1)s 
+ LIMIT %(param_1)s
+2022-11-09 06:57:24,690 - INFO: [generated in 0.00175s] {'id_1': 1, 'param_1': 1}
+2022-11-09 06:57:25,099 - INFO: Started server process [14772]
+2022-11-09 06:57:25,100 - INFO: Waiting for application startup.
+2022-11-09 06:57:25,100 - INFO: Application startup complete.
+2022-11-09 06:57:47,468 - INFO: Shutting down
+2022-11-09 06:59:55,311 - INFO: select pg_catalog.version()
+2022-11-09 06:59:55,313 - INFO: [raw sql] {}
+2022-11-09 06:59:55,316 - INFO: select current_schema()
+2022-11-09 06:59:55,316 - INFO: [raw sql] {}
+2022-11-09 06:59:55,319 - INFO: show standard_conforming_strings
+2022-11-09 06:59:55,320 - INFO: [raw sql] {}
+2022-11-09 06:59:55,324 - INFO: BEGIN (implicit)
+2022-11-09 06:59:55,325 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 06:59:55,325 - INFO: [generated in 0.00111s] {'name': 'administrators'}
+2022-11-09 06:59:55,331 - INFO: COMMIT
+2022-11-09 06:59:55,335 - INFO: BEGIN (implicit)
+2022-11-09 06:59:55,341 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 06:59:55,341 - INFO: [generated in 0.00126s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 06:59:55,732 - INFO: Started server process [29688]
+2022-11-09 06:59:55,732 - INFO: Waiting for application startup.
+2022-11-09 06:59:55,734 - INFO: Application startup complete.
+2022-11-09 07:00:39,900 - INFO: select pg_catalog.version()
+2022-11-09 07:00:39,900 - INFO: [raw sql] {}
+2022-11-09 07:00:39,904 - INFO: select current_schema()
+2022-11-09 07:00:39,904 - INFO: [raw sql] {}
+2022-11-09 07:00:39,907 - INFO: show standard_conforming_strings
+2022-11-09 07:00:39,907 - INFO: [raw sql] {}
+2022-11-09 07:00:39,910 - INFO: BEGIN (implicit)
+2022-11-09 07:00:39,912 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:00:39,912 - INFO: [generated in 0.00096s] {'name': 'administrators'}
+2022-11-09 07:00:39,919 - INFO: COMMIT
+2022-11-09 07:00:39,920 - INFO: BEGIN (implicit)
+2022-11-09 07:00:39,924 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:00:39,924 - INFO: [generated in 0.00135s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:00:40,246 - INFO: Started server process [8408]
+2022-11-09 07:00:40,246 - INFO: Waiting for application startup.
+2022-11-09 07:00:40,247 - INFO: Application startup complete.
+2022-11-09 07:00:51,707 - INFO: select pg_catalog.version()
+2022-11-09 07:00:51,707 - INFO: [raw sql] {}
+2022-11-09 07:00:51,710 - INFO: select current_schema()
+2022-11-09 07:00:51,710 - INFO: [raw sql] {}
+2022-11-09 07:00:51,712 - INFO: show standard_conforming_strings
+2022-11-09 07:00:51,712 - INFO: [raw sql] {}
+2022-11-09 07:00:51,714 - INFO: BEGIN (implicit)
+2022-11-09 07:00:51,716 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:00:51,718 - INFO: [generated in 0.00091s] {'name': 'administrators'}
+2022-11-09 07:00:51,720 - INFO: COMMIT
+2022-11-09 07:00:51,724 - INFO: BEGIN (implicit)
+2022-11-09 07:00:51,729 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:00:51,730 - INFO: [generated in 0.00134s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:00:52,039 - INFO: Started server process [960]
+2022-11-09 07:00:52,039 - INFO: Waiting for application startup.
+2022-11-09 07:00:52,039 - INFO: Application startup complete.
+2022-11-09 07:00:54,574 - INFO: select pg_catalog.version()
+2022-11-09 07:00:54,574 - INFO: [raw sql] {}
+2022-11-09 07:00:54,576 - INFO: select current_schema()
+2022-11-09 07:00:54,578 - INFO: [raw sql] {}
+2022-11-09 07:00:54,579 - INFO: show standard_conforming_strings
+2022-11-09 07:00:54,580 - INFO: [raw sql] {}
+2022-11-09 07:00:54,580 - INFO: BEGIN (implicit)
+2022-11-09 07:00:54,584 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:00:54,584 - INFO: [generated in 0.00107s] {'name': 'administrators'}
+2022-11-09 07:00:54,592 - INFO: COMMIT
+2022-11-09 07:00:54,594 - INFO: BEGIN (implicit)
+2022-11-09 07:00:54,601 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:00:54,601 - INFO: [generated in 0.00165s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:00:54,964 - INFO: Started server process [14484]
+2022-11-09 07:00:54,964 - INFO: Waiting for application startup.
+2022-11-09 07:00:54,964 - INFO: Application startup complete.
+2022-11-09 07:01:27,234 - INFO: select pg_catalog.version()
+2022-11-09 07:01:27,234 - INFO: [raw sql] {}
+2022-11-09 07:01:27,234 - INFO: select current_schema()
+2022-11-09 07:01:27,234 - INFO: [raw sql] {}
+2022-11-09 07:01:27,234 - INFO: show standard_conforming_strings
+2022-11-09 07:01:27,239 - INFO: [raw sql] {}
+2022-11-09 07:01:27,240 - INFO: BEGIN (implicit)
+2022-11-09 07:01:27,242 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:01:27,244 - INFO: [generated in 0.00102s] {'name': 'administrators'}
+2022-11-09 07:01:27,248 - INFO: COMMIT
+2022-11-09 07:01:27,251 - INFO: BEGIN (implicit)
+2022-11-09 07:01:27,254 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:01:27,257 - INFO: [generated in 0.00135s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:01:27,571 - INFO: Started server process [7732]
+2022-11-09 07:01:27,571 - INFO: Waiting for application startup.
+2022-11-09 07:01:27,571 - INFO: Application startup complete.
+2022-11-09 07:01:33,642 - INFO: select pg_catalog.version()
+2022-11-09 07:01:33,642 - INFO: [raw sql] {}
+2022-11-09 07:01:33,649 - INFO: select current_schema()
+2022-11-09 07:01:33,649 - INFO: [raw sql] {}
+2022-11-09 07:01:33,651 - INFO: show standard_conforming_strings
+2022-11-09 07:01:33,654 - INFO: [raw sql] {}
+2022-11-09 07:01:33,654 - INFO: BEGIN (implicit)
+2022-11-09 07:01:33,656 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:01:33,656 - INFO: [generated in 0.00110s] {'name': 'administrators'}
+2022-11-09 07:01:33,662 - INFO: COMMIT
+2022-11-09 07:01:33,667 - INFO: BEGIN (implicit)
+2022-11-09 07:01:33,671 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:01:33,675 - INFO: [generated in 0.00284s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:01:34,034 - INFO: Started server process [17380]
+2022-11-09 07:01:34,034 - INFO: Waiting for application startup.
+2022-11-09 07:01:34,037 - INFO: Application startup complete.
+2022-11-09 07:02:14,580 - INFO: select pg_catalog.version()
+2022-11-09 07:02:14,580 - INFO: [raw sql] {}
+2022-11-09 07:02:14,584 - INFO: select current_schema()
+2022-11-09 07:02:14,584 - INFO: [raw sql] {}
+2022-11-09 07:02:14,587 - INFO: show standard_conforming_strings
+2022-11-09 07:02:14,587 - INFO: [raw sql] {}
+2022-11-09 07:02:14,589 - INFO: BEGIN (implicit)
+2022-11-09 07:02:14,590 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:02:14,590 - INFO: [generated in 0.00086s] {'name': 'administrators'}
+2022-11-09 07:02:14,595 - INFO: COMMIT
+2022-11-09 07:02:14,599 - INFO: BEGIN (implicit)
+2022-11-09 07:02:14,603 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-09 07:02:14,604 - INFO: [generated in 0.00128s] {'name_1': 'superadmin', 'param_1': 1}
+2022-11-09 07:02:14,985 - INFO: Started server process [25040]
+2022-11-09 07:02:14,989 - INFO: Waiting for application startup.
+2022-11-09 07:02:14,989 - INFO: Application startup complete.
+2022-11-09 07:02:16,982 - INFO: select pg_catalog.version()
+2022-11-09 07:02:16,982 - INFO: [raw sql] {}
+2022-11-09 07:02:16,990 - INFO: select current_schema()
+2022-11-09 07:02:16,991 - INFO: [raw sql] {}
+2022-11-09 07:02:16,992 - INFO: show standard_conforming_strings
+2022-11-09 07:02:16,993 - INFO: [raw sql] {}
+2022-11-09 07:02:16,993 - INFO: BEGIN (implicit)
+2022-11-09 07:02:16,999 - INFO: select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=%(name)s
+2022-11-09 07:02:17,003 - INFO: [generated in 0.00407s] {'name': 'administrators'}
+2022-11-09 07:02:17,015 - INFO: COMMIT
+2022-11-09 07:02:17,019 - INFO: BEGIN (implicit)
+2022-11-09 07:02:17,023 - INFO: SELECT administrators.id AS administrators_id, administrators.name AS administrators_name, administrators.last_name AS administrators_last_name, administrators.email AS administrators_email, administrators.token_id AS administrators_token_id 
+FROM administrators 
+WHERE administrators.name = %(name_1)s 
+ LIMIT %(param_1)s
+2022-11-10 09:52:47,434 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,453 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,478 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:52:47,479 - INFO: Admin created
+2022-11-10 09:52:47,487 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,642 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,661 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,674 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,680 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:52:47,689 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,702 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,713 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,725 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,737 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,762 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:52:47,763 - INFO: Admin created
+2022-11-10 09:52:47,781 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:52:47,781 - INFO: Admin created
+2022-11-10 09:52:47,796 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:52:47,797 - INFO: Admin created
+2022-11-10 09:52:47,813 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:52:47,813 - INFO: Admin created
+2022-11-10 09:52:47,816 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,826 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,834 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,860 - DEBUG: Update admin 1 information
+2022-11-10 09:52:47,861 - INFO: Admin updated
+2022-11-10 09:52:47,867 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:52:47,886 - DEBUG: Delete admin 1
+2022-11-10 09:52:47,888 - INFO: Admin deleted
+2022-11-10 09:54:37,140 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,162 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,186 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:54:37,186 - INFO: Admin created
+2022-11-10 09:54:37,191 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,351 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,366 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,376 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,382 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:54:37,389 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,402 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,416 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,427 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,440 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,466 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:54:37,467 - INFO: Admin created
+2022-11-10 09:54:37,487 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:54:37,488 - INFO: Admin created
+2022-11-10 09:54:37,505 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:54:37,505 - INFO: Admin created
+2022-11-10 09:54:37,522 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:54:37,522 - INFO: Admin created
+2022-11-10 09:54:37,524 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,536 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,544 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,563 - DEBUG: Update admin 1 information
+2022-11-10 09:54:37,563 - INFO: Admin updated
+2022-11-10 09:54:37,571 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:54:37,589 - DEBUG: Delete admin 1
+2022-11-10 09:54:37,589 - INFO: Admin deleted
+2022-11-10 09:55:21,889 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,910 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,939 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:55:21,939 - INFO: Admin created
+2022-11-10 09:55:21,943 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,958 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,971 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,983 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:21,990 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:55:21,997 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,012 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,026 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,037 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,050 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,081 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:55:22,081 - INFO: Admin created
+2022-11-10 09:55:22,095 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:55:22,095 - INFO: Admin created
+2022-11-10 09:55:22,110 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:55:22,110 - INFO: Admin created
+2022-11-10 09:55:22,125 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:55:22,125 - INFO: Admin created
+2022-11-10 09:55:22,128 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,141 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,150 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,173 - DEBUG: Update admin 1 information
+2022-11-10 09:55:22,174 - INFO: Admin updated
+2022-11-10 09:55:22,181 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:55:22,196 - DEBUG: Delete admin 1
+2022-11-10 09:55:22,196 - INFO: Admin deleted
+2022-11-10 09:56:24,908 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:24,930 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:24,955 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:56:24,955 - INFO: Admin created
+2022-11-10 09:56:24,960 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:24,974 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:24,986 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:24,997 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,004 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:56:25,014 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,025 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,039 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,051 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,065 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,089 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:56:25,090 - INFO: Admin created
+2022-11-10 09:56:25,105 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:56:25,106 - INFO: Admin created
+2022-11-10 09:56:25,123 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:56:25,124 - INFO: Admin created
+2022-11-10 09:56:25,141 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:56:25,141 - INFO: Admin created
+2022-11-10 09:56:25,143 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,156 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,167 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,187 - DEBUG: Update admin 1 information
+2022-11-10 09:56:25,187 - INFO: Admin updated
+2022-11-10 09:56:25,195 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:56:25,209 - DEBUG: Delete admin 1
+2022-11-10 09:56:25,209 - INFO: Admin deleted
+2022-11-10 09:58:01,457 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,476 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,507 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:58:01,507 - INFO: Admin created
+2022-11-10 09:58:01,512 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,525 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,537 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,550 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,557 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:58:01,566 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,582 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,597 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,609 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,623 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,651 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:58:01,651 - INFO: Admin created
+2022-11-10 09:58:01,667 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:58:01,667 - INFO: Admin created
+2022-11-10 09:58:01,682 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:58:01,682 - INFO: Admin created
+2022-11-10 09:58:01,698 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:58:01,699 - INFO: Admin created
+2022-11-10 09:58:01,701 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,712 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,722 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,740 - DEBUG: Update admin 1 information
+2022-11-10 09:58:01,740 - INFO: Admin updated
+2022-11-10 09:58:01,746 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:58:01,761 - DEBUG: Delete admin 1
+2022-11-10 09:58:01,761 - INFO: Admin deleted
+2022-11-10 09:59:42,870 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,886 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,911 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 09:59:42,911 - INFO: Admin created
+2022-11-10 09:59:42,916 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,930 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,943 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,954 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,962 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 09:59:42,971 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,983 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:42,996 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,008 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,020 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,044 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 09:59:43,044 - INFO: Admin created
+2022-11-10 09:59:43,062 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 09:59:43,062 - INFO: Admin created
+2022-11-10 09:59:43,077 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 09:59:43,078 - INFO: Admin created
+2022-11-10 09:59:43,094 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 09:59:43,094 - INFO: Admin created
+2022-11-10 09:59:43,097 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,110 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,121 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,140 - DEBUG: Update admin 1 information
+2022-11-10 09:59:43,140 - INFO: Admin updated
+2022-11-10 09:59:43,148 - DEBUG: Using proactor: IocpProactor
+2022-11-10 09:59:43,162 - DEBUG: Delete admin 1
+2022-11-10 09:59:43,162 - INFO: Admin deleted
+2022-11-10 10:00:10,996 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,022 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,039 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-10 10:00:11,039 - INFO: Admin created
+2022-11-10 10:00:11,047 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,063 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,074 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,085 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,091 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-10 10:00:11,097 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,113 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,128 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,138 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,150 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,175 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-10 10:00:11,176 - INFO: Admin created
+2022-11-10 10:00:11,193 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-10 10:00:11,193 - INFO: Admin created
+2022-11-10 10:00:11,209 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-10 10:00:11,210 - INFO: Admin created
+2022-11-10 10:00:11,225 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-10 10:00:11,225 - INFO: Admin created
+2022-11-10 10:00:11,228 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,238 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,247 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,267 - DEBUG: Update admin 1 information
+2022-11-10 10:00:11,267 - INFO: Admin updated
+2022-11-10 10:00:11,272 - DEBUG: Using proactor: IocpProactor
+2022-11-10 10:00:11,289 - DEBUG: Delete admin 1
+2022-11-10 10:00:11,289 - INFO: Admin deleted
+2022-11-14 15:20:04,158 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,198 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,209 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,540 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,576 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,591 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,610 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,626 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,638 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,679 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,738 - DEBUG: Create admin 1 with email 0@gmail.com
+2022-11-14 15:20:04,738 - INFO: Admin created
+2022-11-14 15:20:04,766 - DEBUG: Create admin 2 with email 1@gmail.com
+2022-11-14 15:20:04,766 - INFO: Admin created
+2022-11-14 15:20:04,795 - DEBUG: Create admin 3 with email 2@gmail.com
+2022-11-14 15:20:04,795 - INFO: Admin created
+2022-11-14 15:20:04,817 - DEBUG: Create admin 4 with email 3@gmail.com
+2022-11-14 15:20:04,817 - INFO: Admin created
+2022-11-14 15:20:04,817 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,858 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,898 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:20:04,948 - DEBUG: Delete admin 1
+2022-11-14 15:20:04,949 - INFO: Admin deleted
+2022-11-14 15:21:13,804 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,836 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,883 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-14 15:21:13,883 - INFO: Admin created
+2022-11-14 15:21:13,883 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,915 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,930 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:13,964 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,264 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,289 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,305 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,326 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,352 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,400 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-14 15:21:14,400 - INFO: Admin created
+2022-11-14 15:21:14,431 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-14 15:21:14,431 - INFO: Admin created
+2022-11-14 15:21:14,463 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-14 15:21:14,463 - INFO: Admin created
+2022-11-14 15:21:14,484 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-14 15:21:14,484 - INFO: Admin created
+2022-11-14 15:21:14,484 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,512 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,528 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,565 - DEBUG: Update admin 1 information
+2022-11-14 15:21:14,565 - INFO: Admin updated
+2022-11-14 15:21:14,575 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:21:14,614 - DEBUG: Delete admin 1
+2022-11-14 15:21:14,614 - INFO: Admin deleted
+2022-11-14 15:22:40,778 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,818 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,869 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-11-14 15:22:40,869 - INFO: Admin created
+2022-11-14 15:22:40,877 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,900 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,932 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,956 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:40,973 - WARNING: Admin alevillores@hotmail.com already exists
+2022-11-14 15:22:40,989 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,021 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,048 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,071 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,099 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,152 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-11-14 15:22:41,152 - INFO: Admin created
+2022-11-14 15:22:41,199 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-11-14 15:22:41,199 - INFO: Admin created
+2022-11-14 15:22:41,225 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-11-14 15:22:41,225 - INFO: Admin created
+2022-11-14 15:22:41,233 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-11-14 15:22:41,233 - INFO: Admin created
+2022-11-14 15:22:41,249 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,268 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,280 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,304 - DEBUG: Update admin 1 information
+2022-11-14 15:22:41,304 - INFO: Admin updated
+2022-11-14 15:22:41,315 - DEBUG: Using proactor: IocpProactor
+2022-11-14 15:22:41,336 - DEBUG: Delete admin 1
+2022-11-14 15:22:41,336 - INFO: Admin deleted
+2022-12-17 09:27:02,898 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:03,942 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:04,474 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:04,879 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:05,301 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:05,677 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:05,710 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:06,148 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:06,203 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:06,260 - DEBUG: Create admin 1 with email 0@gmail.com
+2022-12-17 09:27:06,260 - INFO: Admin created
+2022-12-17 09:27:06,296 - DEBUG: Create admin 2 with email 1@gmail.com
+2022-12-17 09:27:06,296 - INFO: Admin created
+2022-12-17 09:27:06,325 - DEBUG: Create admin 3 with email 2@gmail.com
+2022-12-17 09:27:06,325 - INFO: Admin created
+2022-12-17 09:27:06,349 - DEBUG: Create admin 4 with email 3@gmail.com
+2022-12-17 09:27:06,349 - INFO: Admin created
+2022-12-17 09:27:06,349 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:06,757 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:07,182 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:46,896 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:46,932 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:46,970 - DEBUG: Create admin 1 with email alevillores@hotmail.com
+2022-12-17 09:27:46,970 - INFO: Admin created
+2022-12-17 09:27:46,981 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,001 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,027 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,050 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,070 - WARNING: Admin alevillores@hotmail.com already exists
+2022-12-17 09:27:47,083 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,116 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,148 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,173 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,198 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,247 - DEBUG: Create admin 2 with email 0@gmail.com
+2022-12-17 09:27:47,247 - INFO: Admin created
+2022-12-17 09:27:47,272 - DEBUG: Create admin 3 with email 1@gmail.com
+2022-12-17 09:27:47,272 - INFO: Admin created
+2022-12-17 09:27:47,304 - DEBUG: Create admin 4 with email 2@gmail.com
+2022-12-17 09:27:47,304 - INFO: Admin created
+2022-12-17 09:27:47,328 - DEBUG: Create admin 5 with email 3@gmail.com
+2022-12-17 09:27:47,328 - INFO: Admin created
+2022-12-17 09:27:47,328 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,370 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,395 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,432 - DEBUG: Update admin 1 information
+2022-12-17 09:27:47,440 - INFO: Admin updated
+2022-12-17 09:27:47,457 - DEBUG: Using proactor: IocpProactor
+2022-12-17 09:27:47,489 - DEBUG: Delete admin 1
+2022-12-17 09:27:47,491 - INFO: Admin deleted

@@ -25,7 +25,7 @@ Poetry (version 1.2.0)
 Pasos para levantar el servidor local una vez clonado el repo
 ```bash
 poetry install
-poetry run uvicorn admin_service.app:app --reload
+poetry run uvicorn admin_service.main:app --reload
 ```
 
 Pasos para correr los test
@@ -61,6 +61,11 @@ docker-compose down -v
 El proposito del servicio de adminsitradores es atender los diferentes request necesarios que poseen los administradores, este servicio otorga la capacidad de crear/leer/editar y eliminar diferentes administradores.
 
 Haciendo uso de la autenticacion de Google Firebase para su desarrollo
+
+Credenciales 
+
+email: admin@fiuba.com
+password: adminfiuba
 
 ### Detalles de implementación
 ---

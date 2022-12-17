@@ -2,11 +2,16 @@ from fastapi import status
 from fastapi.testclient import TestClient
 from admin_service.app import app
 from admin_service.security import jwt_handler
-from admin_service.database import schemas, database, crud
+from admin_service.database import schemas, crud
+from tests import conftest
+
+
+session = conftest.init_database(app)
+conftest.init_firebase(app)
 
 
 class TestAcceptance:
-    token = jwt_handler.create_access_token(1, True)
+    token = jwt_handler.create_access_token(1, "admin")
     client = TestClient(app)
 
     def register_admin(self, endpoint):
@@ -33,7 +38,7 @@ class TestAcceptance:
                     password="test",
                 )
             )
-        db = database.get_local_session()
+        db = session
         for admin in admins:
             crud.create_admin(admin, "token_id", db)
 
@@ -46,7 +51,7 @@ class TestAcceptance:
         assert data == []
 
     def test_03_when_loggin_in_admin_it_should_return_token(self):
-        self.register_admin("admins/")
+        self.register_admin("admins")
         login_response = self.client.post(
             "admins/login",
             json={
@@ -58,11 +63,11 @@ class TestAcceptance:
         actual = jwt_handler.decode_token(data["token"])
         expected = {
             "id": 1,
-            "admin": True,
+            "rol": "admin",
         }
 
         assert actual["id"] == expected["id"]
-        assert actual["admin"] == expected["admin"]
+        assert actual["rol"] == expected["rol"]
 
     def test_04_should_be_able_to_see_profile_of_one_admin(self):
         response = self.client.get(
@@ -86,7 +91,7 @@ class TestAcceptance:
         assert data["detail"] == "The admin does not exists"
 
     def test_06_admin_already_exists_should_raise_http_error_code_409(self):
-        response = self.register_admin("admins/")
+        response = self.register_admin("admins")
         data = response.json()
         assert response.status_code == status.HTTP_409_CONFLICT, response.text
         assert data["detail"] == "Admin already exists"
@@ -127,7 +132,7 @@ class TestAcceptance:
 
     def test_10_user_with_no_token_cant_register(self):
         response = self.client.post(
-            "admins/",
+            "admins",
             json={
                 "name": "Test",
                 "last_name": "test",
